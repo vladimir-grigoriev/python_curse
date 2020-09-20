@@ -1,1 +1,1 @@
-# python_curse
+# python_course
