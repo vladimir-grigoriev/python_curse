@@ -13,7 +13,6 @@ def decorator(func):
             return 'Autorization required'
         a = func(*args, **kwargs)
         return a
-
     return wrapper
 
 
