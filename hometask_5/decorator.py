@@ -1,27 +1,25 @@
-creds = {'name1': 'pass1',
-         'name2': 'pass2',
-         }
+users = {
+    'user1': 'pass1',
+    'user2': 'pass2',
+    'user3': 'pass3'
+}
 
 
-def auth_required(func):
+def decorator(func):
     def wrapper(*args, **kwargs):
-        login = input('Введите ваш логин: ')
-        password = input('Введите пароль: ')
-        if login in creds.keys():
-            if creds[login] == password:
-                pass
-            else:
-                return 'Неверный пароль!'
-        else:
-            return 'Такого пользователя не существует!'
-        value = func(*args, **kwargs)
-        return value
+        login = input('Enter login: ')
+        password = input('Enter password: ')
+        if login not in users.keys() or users[login] != password:
+            return 'Autorization required'
+        a = func(*args, **kwargs)
+        return a
+
     return wrapper
 
 
-@auth_required
-def some_func():
-    return ('Добро пожаловать в систему!')
+@decorator
+def sum_numbers(a, b):
+    return a+b
 
 
-print(some_func())
+print(sum_numbers(2, 3))
