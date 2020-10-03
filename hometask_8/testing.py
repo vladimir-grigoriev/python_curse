@@ -155,9 +155,3 @@ while True:
     drawing_clocks(get_current_time())
     time.sleep(0.3)
     os.system('clear')
-
-#while True:
-#    for i in range(7):
-#        print(number_two()[i] + '\t' + next(s)[i] + '\t' + number_one()[i] + '\t' + next(s)[i] + '\t' + number_two()[i])
-#    time.sleep(0.3)
-#    os.system('clear')
