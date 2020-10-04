@@ -3,6 +3,7 @@ import os
 import datetime
 from clock_numbers import *
 from colorama import Fore
+
 color_list = [Fore.RED,
               Fore.GREEN,
               Fore.YELLOW,
@@ -29,7 +30,6 @@ def color_decorator(func):  # Меняет цвет циферблата
             color_list_index += 1
         return func
     return wrapper
-
 
 
 def generator():  # Мигалки на часах

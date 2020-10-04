@@ -141,5 +141,4 @@ numbers_dict = {
     '6': number_six(),
     '7': number_seven(),
     '8': number_eight(),
-    '9': number_nine()
-}
+    '9': number_nine()}
