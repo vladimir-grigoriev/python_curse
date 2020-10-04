@@ -1,6 +1,5 @@
-import time
-
 SYMBOL = '\u2588'
+
 
 def number_zero():  # Отрисовываем ноль
     zero = [
@@ -14,6 +13,7 @@ def number_zero():  # Отрисовываем ноль
     ]
     return zero
 
+
 def number_one(): # Отрисовываем единицу
     one = [
         ' ' + ' ' + SYMBOL + ' ' + ' ',
@@ -25,6 +25,7 @@ def number_one(): # Отрисовываем единицу
         ' ' + SYMBOL + SYMBOL + SYMBOL + ' ',
     ]
     return one
+
 
 def number_two(): # Отрисовываем двойку
     two = [
@@ -38,6 +39,7 @@ def number_two(): # Отрисовываем двойку
     ]
     return two
 
+
 def number_three(): # Отрисовываем тройку
     three = [
         SYMBOL + SYMBOL + SYMBOL + SYMBOL + SYMBOL,
@@ -49,6 +51,7 @@ def number_three(): # Отрисовываем тройку
         ' ' + SYMBOL + SYMBOL + SYMBOL + ' ',
     ]
     return three
+
 
 def number_four(): # Отрисовываем четверку
     four = [
@@ -62,6 +65,7 @@ def number_four(): # Отрисовываем четверку
     ]
     return four
 
+
 def number_five(): # Отрисовываем пятерку
     five = [
         SYMBOL + SYMBOL + SYMBOL + SYMBOL + SYMBOL,
@@ -73,6 +77,7 @@ def number_five(): # Отрисовываем пятерку
         ' ' + SYMBOL + SYMBOL + SYMBOL + ' ',
     ]
     return five       
+
 
 def number_six(): # Отрисовываем шестерку
     six = [
@@ -86,6 +91,7 @@ def number_six(): # Отрисовываем шестерку
     ]
     return six               
 
+
 def number_seven():  # Отрисовываем семерку
     seven = [
         SYMBOL + SYMBOL + SYMBOL + SYMBOL + SYMBOL,
@@ -97,6 +103,7 @@ def number_seven():  # Отрисовываем семерку
         ' ' + SYMBOL + ' ' + ' ' + ' ',
     ]
     return seven
+
 
 def number_eight():  # Отрисовываем восьмерку
     eight = [
@@ -110,6 +117,7 @@ def number_eight():  # Отрисовываем восьмерку
     ]
     return eight
 
+
 def number_nine():  # Отрисовываем девятку
     nine = [
         ' ' + SYMBOL + SYMBOL + SYMBOL + ' ',
@@ -121,6 +129,7 @@ def number_nine():  # Отрисовываем девятку
         ' ' + SYMBOL + SYMBOL + ' ' + ' ',
     ]
     return nine
+
 
 numbers_dict = {
     '0': number_zero(),
@@ -134,16 +143,3 @@ numbers_dict = {
     '8': number_eight(),
     '9': number_nine()
 }
-
-def generator():
-    position_1 = [' ', ' ', SYMBOL, ' ', SYMBOL, ' ', ' ']
-    position_2 = [' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    counter = 1
-    while True:
-        if counter == 23:
-            counter = 0
-        while counter <= 14:
-            counter += 1
-            yield position_1
-        counter += 1
-        yield position_2    
