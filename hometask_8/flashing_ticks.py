@@ -2,6 +2,34 @@ import time
 import os
 import datetime
 from clock_numbers import *
+from colorama import Fore
+color_list = [Fore.RED,
+              Fore.GREEN,
+              Fore.YELLOW,
+              Fore.BLUE,
+              Fore.MAGENTA,
+              Fore.CYAN,
+              Fore.WHITE]
+
+
+def color_decorator(func):  # Меняет цвет циферблата
+    color_list_index = 0
+    color_list_index_counter = 0
+
+    def wrapper(*args):
+        nonlocal color_list_index, color_list_index_counter
+        color_list_index_counter += 1
+        print(color_list[color_list_index])
+        func(*args)
+        if color_list_index_counter == 7:
+            color_list_index_counter = 0
+            if (color_list_index + 1 >= len(color_list) or
+               color_list_index - 1 == -1):
+                color_list_index = -color_list_index
+            color_list_index += 1
+        return func
+    return wrapper
+
 
 
 def generator():  # Мигалки на часах
@@ -15,7 +43,7 @@ def generator():  # Мигалки на часах
             counter += 1
             yield position_1
         counter += 1
-        yield position_2    
+        yield position_2
 
 
 def get_current_time():  # Получаем текущее время
@@ -24,14 +52,15 @@ def get_current_time():  # Получаем текущее время
     return timelist
 
 
+@color_decorator
 def drawing_clocks(current_time, tick):  # Отрисовываем часы
     timelist = current_time
     for i in range(7):
-        print(numbers_dict[timelist[0][0]][i] + ' ' + 
+        print(numbers_dict[timelist[0][0]][i] + ' ' +
               numbers_dict[timelist[0][1]][i] + '\t' + next(tick)[i] + '\t' +
-              numbers_dict[timelist[1][0]][i] + ' ' + 
+              numbers_dict[timelist[1][0]][i] + ' ' +
               numbers_dict[timelist[1][1]][i] + '\t' + next(tick)[i] + '\t' +
-              numbers_dict[timelist[2][0]][i] + ' ' + 
+              numbers_dict[timelist[2][0]][i] + ' ' +
               numbers_dict[timelist[2][1]][i])
 
 
