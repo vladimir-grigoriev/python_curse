@@ -69,7 +69,7 @@ def main():  # Основной цикл программы
     while True:
         drawing_clocks(get_current_time(), tick)
         time.sleep(0.3)
-        os.system('clear')
+        os.system('clear||clr')
 
 
 if __name__ == "__main__":
