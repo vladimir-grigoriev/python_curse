@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     'hello_world',
     'directory',
+    'products',
 ]
 
 MIDDLEWARE = [

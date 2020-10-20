@@ -7,6 +7,10 @@ models_list = [
     Series,
     Genre,
     Publisher,
+    Binding,
+    BookFormat,
+    AgeRestriction
 ]
+
 for model in models_list:
     admin.site.register(model)
