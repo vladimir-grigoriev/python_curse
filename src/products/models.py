@@ -10,7 +10,9 @@ class Book(models.Model):
         help_text='Введите название книги'
     )
     foto = models.ImageField(
-        verbose_name='Фото обложки',    
+        verbose_name='Фото обложки',
+        null = True,
+        blank = True
     )
     price = models.DecimalField(
         verbose_name='Цена',
@@ -20,25 +22,24 @@ class Book(models.Model):
     )
     author = models.ManyToManyField(
         Author,
-        related_name='author',
+        related_name='books',
         verbose_name='ФИО автора',
-        max_length=100,
-        default='Автор неизвестен',        
+        max_length=100,        
     )
     series = models.ForeignKey(
         Series,
         on_delete=models.PROTECT,
-        related_name='series',
+        related_name='books',
         verbose_name='Серия книг',
     )
     genres = models.ManyToManyField(
         Genre,
-        related_name='genres',
+        related_name='books',
         verbose_name='Жанр книги',
         max_length=50,
         default='Жанр не указан',
     )
-    year_published = models.IntegerField(
+    year_published = models.DateField(
         verbose_name='Год публикации',
         null=True,
         blank=True,
@@ -51,13 +52,13 @@ class Book(models.Model):
     binding = models.ForeignKey(
         Binding,
         on_delete=models.PROTECT,
-        related_name='binding',
+        related_name='books',
         verbose_name='Книжный переплет',
     )
     book_format = models.ForeignKey(
         BookFormat,
         on_delete=models.PROTECT,
-        related_name='book_format_link',
+        related_name='books',
         verbose_name='Формат'
     )
     book_isbn = models.CharField(
@@ -69,35 +70,36 @@ class Book(models.Model):
         verbose_name='Вес книги, грамм',
         max_length=255,
         help_text='Укажите вес книги в граммах',
-        default='не указан',
     )
     age_restrictions = models.ForeignKey(
         AgeRestriction,
         on_delete=models.PROTECT,
-        verbose_name='Возрастные ограничения'
+        verbose_name='Возрастные ограничения',
+        related_name='books'
     )
     publisher = models.ForeignKey(
         Publisher,
         on_delete=models.PROTECT,
-        verbose_name='Издательство'
+        verbose_name='Издательство',
+        related_name='books'
     )
     quantity = models.PositiveIntegerField(
         verbose_name='Количество книг в наличии'
     )
     book_available = models.BooleanField(
         verbose_name='Доступно для заказа',
-        default=False
+        default=True
     )
     rating = models.IntegerField(
         verbose_name='Рейтинг',
         default=10,
         help_text='Значение от 1 до 10',
     )
-    inclusion_in_catalog_date = models.DateField(
+    inclusion_in_catalog_date = models.DateTimeField(
         verbose_name='Дата внесения в каталог',
         auto_now_add=True
     )
-    last_changes_date = models.DateField(
+    last_changes_date = models.DateTimeField(
         verbose_name='Дата последнего изменения',
         auto_now=True
     )

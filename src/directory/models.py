@@ -10,7 +10,6 @@ class Author(models.Model):
         verbose_name = 'Автор'
         verbose_name_plural = 'Авторы'
 
-
 class Series(models.Model):
     series_name = models.CharField(verbose_name='Серия', max_length=255)
 
