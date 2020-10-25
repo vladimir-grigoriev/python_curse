@@ -40,6 +40,7 @@ class Book(models.Model):
         default='Жанр не указан',
     )
     year_published = models.DateField(
+        default=1980,
         verbose_name='Год публикации',
         null=True,
         blank=True,
