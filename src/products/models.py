@@ -105,6 +105,9 @@ class Book(models.Model):
         auto_now=True
     )
     
+    def __str__(self):
+        return f'"{self.name}", {", ".join(str(i) for i in self.author.all())}, {self.year_published.year} год'
+
     class Meta:
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
