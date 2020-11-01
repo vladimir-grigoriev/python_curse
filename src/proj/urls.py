@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
-from directory.views import get_directory, get_detailed_directory_view
+from hello_world.views import hello_world
+from directory.views import all_directories
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', get_directory),
-    path('<int:author_id>/', get_detailed_directory_view),
+    path('', hello_world),
+    path('directories/', include('directory.urls')),
+    # path()
+    #path('<int:author_id>/', get_detailed_directory_view),
 ]

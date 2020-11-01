@@ -5,6 +5,10 @@ class Author(models.Model):
 
     def __str__(self):
         return self.author_name
+    
+    @classmethod
+    def get_class_url(self):
+        return 'authors'
 
     class Meta:
         verbose_name = 'Автор'
@@ -16,6 +20,9 @@ class Series(models.Model):
     def __str__(self):
         return self.series_name
 
+    @classmethod
+    def get_class_url(self):
+        return 'series'
     class Meta:
         verbose_name = 'Серия'
         verbose_name_plural = 'Серия'
@@ -26,6 +33,10 @@ class Genre(models.Model):
     def __str__(self):
         return self.genre_name
 
+    @classmethod
+    def get_class_url(self):
+        return 'genres'
+
     class Meta:
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'
@@ -35,6 +46,10 @@ class Publisher(models.Model):
 
     def __str__(self):
         return self.publisher_name
+
+    @classmethod
+    def get_class_url(self):
+        return 'publishers'
 
     class Meta:
         verbose_name = 'Издательство'
@@ -48,6 +63,10 @@ class Binding(models.Model):
 
     def __str__(self):
         return self.binding_type
+
+    @classmethod
+    def get_class_url(self):
+        return 'binding'
 
     class Meta:
         verbose_name = 'Тип переплёта'
@@ -63,6 +82,10 @@ class BookFormat(models.Model):
     def __str__(self):
         return self.book_format
 
+    @classmethod
+    def get_class_url(self):
+        return 'book-format'
+
     class Meta:
         verbose_name = 'Формат'
         verbose_name_plural = 'Формат'
@@ -77,6 +100,10 @@ class AgeRestriction(models.Model):
 
     def __str__(self):
         return self.age_restrictions
+
+    @classmethod
+    def get_class_url(self):
+        return 'age-restrictions'
 
     class Meta:
         verbose_name = 'Возрастные ограничения'

@@ -1,0 +1,5 @@
+<form action="{% url 'author_create_view' %}" method="post">
+    {% csrf_token %}
+    <label>Введите имя автора: {{ form.author_name }}</label><br>
+    <button type="submit">Добавить</button>
+</form>

@@ -6,10 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Справочник Авторов</h1>
+    <h1>Справочнии</h1>
     <ul>
-    {% for author in all_authors %}
-    <li><a href="{{ author.id }}">{{ author.id }}. {{ author.author_name }}</a></li>
+    {% load my_tags %}
+    {% for ref in all_refs %}
+    <li><a href="{{ ref.get_class_url }}">{{ ref|verbose_name }}</a></li>
     {% endfor %}
     </ul>
 </body>
