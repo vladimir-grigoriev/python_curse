@@ -1,0 +1,7 @@
+<h1>Список книг</h1>
+<ul>
+    {% for book in books %}
+        <li><a href="{{ book.pk }}">"{{ book.name }}", {% for author in book.author.all %}{{ author }}, {% endfor %} - {{ book.year_published }}</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'create_new_product' %}"><button>Добавить книгу</button></a>

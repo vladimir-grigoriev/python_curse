@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', hello_world),
     path('directories/', include('directory.urls')),
+    path('products/', include('products.urls')),
     # path()
     #path('<int:author_id>/', get_detailed_directory_view),
 ]

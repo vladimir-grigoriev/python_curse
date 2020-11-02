@@ -1,0 +1,23 @@
+<h1>"{{ book.name }}", {% for author in book.author.all %}{{ author }} {% endfor %}</h1>
+{{ book }}
+<ul>
+    <li>Название книги:{{ book.name }}</li>
+    <li>Фото: {{ book.name }}</li>
+    <li>Цена: {{ book.foto }}</li>
+    <li>Авторы: {{ book.price }}</li>
+    <li>Серия: {{ book.series }}</li>
+    <li>Жанры: {{ book.genres }}</li>
+    <li>Год издания: {{ book.year_published }}</li>
+    <li>Число страниц: {{ book.number_of_pages }}</li>
+    <li>Тип переплета: {{ book.binding }}</li>
+    <li>Формат: {{ book.format }}</li>
+    <li>ISBN: {{ book.isbn }}</li>
+    <li>Вес, гр.: {{ book.weight }}</li>
+    <li>Возрастные ограничения: {{ book.age_restrictions }}</li>
+    <li>Издательство: {{ book.publisher }}</li>
+    <li>Количество на складе: {{ book.quantity }}</li>
+    <li>Доступность для заказа: {{ book.book_available }}</li>
+    <li>Рейтинг: {{ book.rating }}</li>
+</ul>
+<a href="/products/{{ book.pk }}/update"><button>Редактировать автора</button></a>
+<a href="/products/{{ book.pk }}/delete"><button>Удалить автора</button></a>
