@@ -1,63 +1,61 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
+from django.urls import reverse_lazy
 from django.http import HttpResponse
 from .models import *
 from .admin import models_list
+from .models import Author
 from .forms import AuthorForm
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
-def all_directories(request):
-    context = {
-        'all_refs': models_list
-    }
-    return render(request, 'directory/all_refs.html', context=context)
+class AllDirectoriesView(TemplateView):
+    """Выводим список всех справочников"""
+    template_name = "directory/all_refs.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["all_refs"] = models_list
+        return context
+    
 
-def all_authors_list_view(request):
-    all_authors_list = Author.objects.all()
-    context = {
-        'authors': all_authors_list
-    }
-    return render(request, 'directory/author_list.html', context=context)
-
-
-def author_detailed_view(request, author_id):
-    author_obj = Author.objects.get(pk = author_id)
-    context = {
-        'author': author_obj
-    }
-    return render(request, 'directory/author_detailed.html', context=context)
+class AuthorsListView(ListView):
+    """Выводим список всех авторов"""
+    model = Author
+    template_name = "directory/authors_list.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["authors"] = Author.objects.all()
+        return context
 
 
-def author_create_view(request):
-    if request.method == "GET":
-        form = AuthorForm()
-        return render(request, 'directory/author_create.html', context={'form': form})
-    else:
-        form = AuthorForm(request.POST)
-        if form.is_valid():
-            Author.objects.create(author_name = form.cleaned_data['author_name'])
-            return redirect('authors')
+class AuthorDetailView(DetailView):
+    """Выводим детализированную информацию об авторе"""
+    model = Author
+    template_name = "directory/author_detailed.html"
+    pk_url_kwarg = 'author_id'
 
 
-def author_update_view(request, author_id):
-    if request.method == 'POST':
-        form = AuthorForm(data=request.POST)
-        if form.is_valid():
-            new_author_name = form.cleaned_data.get('author_name')
-            a = Author.objects.get(pk=author_id)
-            print(dir(a))
-            a.author_name=new_author_name
-            a.save()
-            return redirect('authors')
-    else:
-        author = Author.objects.get(pk=author_id)
-        form = AuthorForm(data={"author_name":author.author_name})
-    return render(request, 'directory/author_update.html', context={'form':form})
+class AuthorCreateView(CreateView):
+    """Добавляем нового автора"""
+    model = Author
+    template_name = "directory/author_create.html"
+    fields = ['author_name']
+    
+    def get_success_url(self):
+        return reverse('all_authors')
 
 
-def author_delete_view(request, author_id):
-    if request.method == 'POST':
-        return redirect('authors')
-    else:
-        author = Author.objects.get(pk=author_id)
-        author.delete()
-    return render(request, 'directory/author_delete.html', context={"author": author})
+class AuthorUpdateView(UpdateView):
+    """Изменяем инофрмацию об авторе"""
+    model = Author
+    template_name = "directory/author_create.html"
+    pk_url_kwarg = 'author_id'
+    fields = ['author_name']
+    success_url = reverse_lazy('all_authors')
+
+
+class AuthorDeleteView(DeleteView):
+    """Удаляем экземпляр автора"""
+    model = Author
+    template_name = "directory/author_delete.html"
+    pk_url_kwarg = 'author_id'
+    success_url = reverse_lazy('all_authors')
