@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Справочнии</h1>
-    <ul>
-    {% load my_tags %}
-    {% for ref in all_refs %}
-    <li><a href="{{ ref.get_class_url }}">{{ ref|verbose_name }}</a></li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'manager_base.html' %}
+{% block list %}
+{% load my_tags %}
+
+    <h1>Справочники</h1>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Справочник</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for ref in all_refs %}
+          <tr>
+            <th scope="row">#</th>
+            <td><a href="{{ ref.get_class_url }}">{{ ref|verbose_name }}</a></td>
+            <td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+{% endblock list %}

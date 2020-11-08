@@ -1,4 +1,4 @@
 <h1>Карточка автора</h1>
 <h2>ФИО - {{ author.author_name }}</h2>
 <a href={% url 'author_update' author.pk %}><button>Редактировать автора</button></a>
-<a href="/directories/authors/{{author.pk}}/delete"><button>Удалить автора</button></a>
+<a href={% url 'author_delete' author.pk %}><button>Удалить автора</button></a>

@@ -1,0 +1,28 @@
+{% extends 'manager_base.html' %}
+{% block list %}
+
+    <h1>Издетельства</h1>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Издательсво</th>
+            <th scope="col">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for publisher in publishers %}
+          <tr>
+            <th scope="row">{{ publisher.pk }}</th>
+            <td>{{ publisher.publisher_name }}</td>
+            <td>
+                <a href="{% url 'publisher_detailed_info' publisher.pk %}"><button class="btn btn-success"><i class="fas fa-info-circle"></i></button></a>
+                <a href="{% url 'publisher_update' publisher.pk %}"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+                <a href="{% url 'publisher_delete' publisher.pk %}"><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
+                </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+{% endblock list %}

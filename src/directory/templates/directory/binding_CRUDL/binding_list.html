@@ -1,0 +1,28 @@
+{% extends 'manager_base.html' %}
+{% block list %}
+
+    <h1>Типы переплётов</h1>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Переплёт</th>
+            <th scope="col">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for binding in bindings %}
+          <tr>
+            <th scope="row">{{ binding.pk }}</th>
+            <td>{{ binding.binding_type }}</td>
+            <td>
+                <a href="{% url 'binding_detailed_info' binding.pk %}"><button class="btn btn-success"><i class="fas fa-info-circle"></i></button></a>
+                <a href="{% url 'binding_update' binding.pk %}"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+                <a href="{% url 'binding_delete' binding.pk %}"><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
+                </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+{% endblock list %}

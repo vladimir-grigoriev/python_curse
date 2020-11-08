@@ -1,0 +1,4 @@
+<h1>Карточка издательства</h1>
+<h2>Название - {{ publisher.publisher_name }}</h2>
+<a href={% url 'publisher_update' publisher.pk %}><button>Редактировать издательство</button></a>
+<a href={% url 'publisher_delete' publisher.pk %}><button>Удалить издательство</button></a>

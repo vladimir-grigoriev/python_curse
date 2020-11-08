@@ -1,0 +1,4 @@
+<h1>Карточка жанра</h1>
+<h2>Название - {{ genre.genre_name }}</h2>
+<a href={% url 'genre_update' genre.pk %}><button>Редактировать жанр</button></a>
+<a href={% url 'genre_delete' genre.pk %}><button>Удалить жанр</button></a>

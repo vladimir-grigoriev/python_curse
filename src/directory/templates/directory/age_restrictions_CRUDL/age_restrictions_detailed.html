@@ -1,0 +1,4 @@
+<h1>Возрастное ограничение</h1>
+<h2>Тип - {{ object.age_restrictions }}</h2>
+<a href={% url 'age_restriction_update' object.pk %}><button>Редактировать ограничение</button></a>
+<a href={% url 'age_restriction_delete' object.pk %}><button>Удалить ограничение</button></a>

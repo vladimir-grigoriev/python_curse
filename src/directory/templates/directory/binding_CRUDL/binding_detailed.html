@@ -1,0 +1,4 @@
+<h1>Тип переплёта</h1>
+<h2>Наименование - {{ binding.binding_type }}</h2>
+<a href={% url 'binding_update' binding.pk %}><button>Редактировать тип переплёта</button></a>
+<a href={% url 'binding_delete' binding.pk %}><button>Удалить тип переплёта</button></a>
