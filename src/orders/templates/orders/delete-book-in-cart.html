@@ -1,0 +1,10 @@
+{% extends 'manager_base.html' %}
+
+{% block list %}
+Del Book in cart 
+<h2>Delete {{ object }}</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+{% endblock list %}

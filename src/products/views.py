@@ -1,41 +1,80 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.http import HttpResponse
 from .forms import BookForm
 from .models import Book
+from django.views.generic import (ListView, 
+                                  CreateView, 
+                                  DetailView, 
+                                  UpdateView, 
+                                  DeleteView)
 
 
-def all_products_list_view(request):
-    all_products = Book.objects.all()
-    return render(request, 'products/all_products.html', context={'books':all_products})
+class ProductsListView(ListView):
+    model = Book
+    template_name = "products/all_products.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["books"] = Book.objects.all()
+        return context
+    
 
-def create_new_product_view(request):
-    if request.method == 'POST':
-        form = BookForm(request.POST)
-        form.save()
-        return redirect('all_products_list')
-    else:
-        form = BookForm()
-        return render(request, 'products/create_product.html', context={'form': form})
+class ProductCreateView(CreateView):
+    model = Book
+    template_name = "products/create_product.html"
+    fields = [
+        'name',
+        'foto',
+        'price',
+        'author',
+        'series',
+        'genres',
+        'year_published',
+        'nubmer_of_pages',
+        'binding',
+        'book_format',
+        'book_isbn',
+        'weight',
+        'age_restrictions',
+        'publisher',
+        'quantity',
+        'book_available',
+        'rating',
+    ]
+    success_url = reverse_lazy('products:all_products_list')
 
-def product_detailed_view(request, pk):
-    selected_product = Book.objects.get(pk=pk)
-    return render(request, 'products/product_detailed.html', context={'book': selected_product})
 
-def product_update_view(request, pk):
-    if request.method == 'POST':
-        form = BookForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('all_products_list')
-    else:
-        book = Book.objects.get(pk=pk)
-        form = BookForm(instance=book)
-        return render(request, 'products/product_update.html', context={'form': form})
+class ProductDetailView(DetailView):
+    model = Book
+    template_name = "products/product_detailed.html"
 
-def product_delete_view(request, pk):
-    book = Book.objects.get(pk=pk)
-    if request.method == "POST":
-        book.delete()
-        return redirect('all_products_list')
-    context = {'item': book}
-    return render(request, 'products/product_delete.html', context)
+
+class ProductUpdateView(UpdateView):
+    model = Book
+    template_name = "products/product_update.html"
+    fields = [
+        'name',
+        'foto',
+        'price',
+        'author',
+        'series',
+        'genres',
+        'year_published',
+        'nubmer_of_pages',
+        'binding',
+        'book_format',
+        'book_isbn',
+        'weight',
+        'age_restrictions',
+        'publisher',
+        'quantity',
+        'book_available',
+        'rating',
+    ]
+    success_url = reverse_lazy('products:all_products_list')
+
+
+class ProductDeleteView(DeleteView):
+    model = Book
+    template_name = "products/product_delete.html"
+    success_url = reverse_lazy('products:all_products_list')

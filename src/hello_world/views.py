@@ -9,6 +9,9 @@ class HomepageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["last_books"] = Book.objects.order_by('-inclusion_in_catalog_date')[:5]
+        context["last_books"] = Book.objects.order_by('-inclusion_in_catalog_date')[:6]
+        context["most_popular"] = Book.objects.order_by('-rating')[:6]
+        context['user'] = self.request.user
         return context
-    
+
+

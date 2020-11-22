@@ -1,0 +1,31 @@
+{% extends 'manager_base.html' %}
+
+{% block list %}
+    <h2>Cart</h2>
+    Cart ID: {{ cart.pk }}<br>
+    Book you just have added:{{ book.pk }} {{ book.name }}<hr>
+
+    Total price: {{ cart.total_price }}
+
+    <form action="{% url 'orders:update' %}" method="post">
+    <table class="table">
+            {% csrf_token %}
+           {% for book_in_cart in cart.books.all %}
+        <tr>
+            <td>{{ book_in_cart.book.name }}</td>
+            <td>quantity - <input type="number" name="{{ book_in_cart.pk }}" id="" value="{{ book_in_cart.quantity }}"></td>
+            <td>price - {{ book_in_cart.price }}</td>
+            <td>
+                <a href="{% url 'orders:book_in_cart-del' book_in_cart.pk %}">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %} 
+    </table>
+        <button type="submit" class="btn btn-danger" name="submit_button" value="checkout">Checkout</button>
+        <button type="submit" class="btn btn-success" name="submit_button" value="edit">Edit</button>
+        </form>
+        
+
+{% endblock list %}

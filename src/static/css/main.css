@@ -1,0 +1,13 @@
+.carousel-inner img {
+  width: 100%;
+  height: 700px;
+  max-height: 700px;
+}
+
+.jumbotron.jumbotron-fluid{
+  margin-bottom: 0rem;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  text-align: center;
+}
+

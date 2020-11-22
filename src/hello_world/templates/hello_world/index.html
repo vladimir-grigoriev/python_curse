@@ -1,36 +1,73 @@
 {% extends 'customer_base.html' %}
 
 {% block new_books %}
-<section class="jumbotron text-center">
-    <div class="row">
-        <div class="column">
-            <h1>Тут красиво пропишем новинки</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Новинки</h1>
         </div>
+      </div>
     </div>
-</section>
-
-<section>  
-    <div class="row" style="display: flex; flex-wrap: wrap; justify-content: start;">
-        {% for book in last_books %}
-        <div class="col-md-3" style="display:flex; padding: 0%;">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{ book.name }}</h5>
-                  <p class="card-text">{{ book.name }}", автор - {% for auth in book.author.all %}{{ auth.author_name }}{% endfor %}, {{ book.year_published.year }} год</p>
-                  <a href="#" class="btn btn-primary">{{ book.price }} руб.</a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-        <div class="col-md-3">
-            <a href="directories/"><button class="btn btn-danger">Тут пока кнопка на страницу со стравочниками</button></a>
-        </div>
+  </div>
+ <!-- Карточки товаров -->
+  <div class="row">
+    {% for book in last_books %}
+      <div class="col-sm-6 col-md-4">
+        <div class="card">
+          <img src="{{ book.foto.url }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.name }}</h5>
+            <p class="card-text">{{ book.name }}", автор - {% for auth in book.author.all %}{{ auth.author_name }}{% endfor %}, {{ book.year_published.year }} год</p>
+            <a href="{% url 'orders:cart' %}?book={{ book.pk }}" class="btn btn-primary">{{ book.price }} руб.</a>
+          </div>
+        </div>  
+      </div>
+    {% endfor %}
+  </div>
+</div>
         
-    </div>  
-    
-</section>
-
-
-
+   
 {% endblock new_books %}
+
+
+{% block most_popular %}
+
+<!-- Заголовок блока -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Популярные</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Карточки товаров -->
+  <div class="row">
+    {% for item in most_popular %}
+    <div class="col-md-4">
+      <div class="card">
+        <img class="card-img-top" src="{{item.foto.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-outline-dark">{{ item.price }}</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row justify-content-center" style="margin-top: 2em;">
+    <div class="col-4">
+      <div class="display-3">
+        <button class="btn btn-outline-dark btn-lg btn-block">Посмотреть все</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+{% endblock most_popular %}

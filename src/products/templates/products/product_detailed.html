@@ -19,5 +19,5 @@
     <li>Доступность для заказа: {{ book.book_available }}</li>
     <li>Рейтинг: {{ book.rating }}</li>
 </ul>
-<a href="/products/{{ book.pk }}/update"><button>Редактировать автора</button></a>
-<a href="/products/{{ book.pk }}/delete"><button>Удалить автора</button></a>
+<a href="{% url 'products:all_products_list' %}"><button>Назад</button></a>
+{{ form }}

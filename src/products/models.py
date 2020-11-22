@@ -1,6 +1,8 @@
+import datetime
+
 from django.db import models
 from directory.models import Author, Genre, Series, Publisher, Binding, BookFormat, AgeRestriction
-
+from django.core.validators import MinValueValidator, MinLengthValidator, MaxValueValidator
 
 class Book(models.Model):
     name = models.CharField(
@@ -11,8 +13,7 @@ class Book(models.Model):
     )
     foto = models.ImageField(
         verbose_name='Фото обложки',
-        null = True,
-        blank = True
+        upload_to='books/'
     )
     price = models.DecimalField(
         verbose_name='Цена',
@@ -39,16 +40,19 @@ class Book(models.Model):
         max_length=50,
         default='Жанр не указан',
     )
-    year_published = models.DateField(
-        default=1980,
+    year_published = models.PositiveSmallIntegerField(
+        validators=[
+            MinValueValidator(1500),
+            MaxValueValidator(datetime.datetime.now().year)],
         verbose_name='Год публикации',
         null=True,
         blank=True,
+        help_text='В формате "YYYY"'
     )
     nubmer_of_pages = models.IntegerField(
         verbose_name='Количество страниц',
         null=True,
-        blank=True
+        blank=True,
     )
     binding = models.ForeignKey(
         Binding,
@@ -106,7 +110,7 @@ class Book(models.Model):
     )
     
     def __str__(self):
-        return f'"{self.name}", {", ".join(str(i) for i in self.author.all())}, {self.year_published.year} год'
+        return f'"{self.name}", {", ".join(str(i) for i in self.author.all())}, {self.year_published} год'
 
     class Meta:
         verbose_name = 'Книга'
