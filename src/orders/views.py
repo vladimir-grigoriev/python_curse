@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, DeleteView, RedirectView
-from .models import Cart, User, BookInCart
+from django.views.generic import TemplateView, DeleteView, RedirectView, CreateView, UpdateView, DetailView
+from .models import Cart, User, BookInCart, Order
 from products.models import Book
 from django.urls import reverse_lazy
+from .forms import OrderForm
 
 
 class CartView(TemplateView):
@@ -72,6 +73,30 @@ class CartUpdateView(RedirectView):
                         obj_list.append(book_in_cart)
             BookInCart.objects.bulk_update(obj_list, ['quantity'])
         else:
-            pass
+            Order.objects.create(
+                cart=Cart.objects.get(pk=cart_id)
+            )
+            del self.request.session['cart_id']
             
         return reverse_lazy('orders:cart')
+
+
+class CreateOrderView(UpdateView):
+    template_name = 'orders/order.html'
+    success_url = reverse_lazy('hello_world:homepage')
+    model = Order
+    fields = [
+        'fio',
+        'phone',
+        'email',
+        'delivery'
+    ]
+    
+class HistoryDetailView(DetailView):
+    model = Order
+    template_name = 'orders/history.html'
+    
+    
+   
+
+    

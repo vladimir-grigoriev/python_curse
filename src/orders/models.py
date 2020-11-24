@@ -1,3 +1,6 @@
+import datetime
+from django.utils import timezone
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from products.models import Book
@@ -17,11 +20,16 @@ class Cart(models.Model):
         auto_now=False,
         auto_now_add=True
     )
+    updated_date = models.DateTimeField(
+        verbose_name='Updated date',
+        auto_now=True,
+        auto_now_add=False
+    )
 
     def total_price(self):
         price = 0
         for book_in_cart in self.books.all():
-            price += book_in_cart.price
+            price += book_in_cart.price * book_in_cart.quantity
         return price
 
 
@@ -45,10 +53,66 @@ class BookInCart(models.Model):
         decimal_places=2,
         max_digits=6
     )
+    create_date = models.DateTimeField(
+        verbose_name='Create date',
+        auto_now=False,
+        auto_now_add=True,
+    )
+    update_date = models.DateTimeField(
+        verbose_name='Update date',
+        auto_now=True,
+        auto_now_add=False
+    )
 
     def construct_price(self):
-        price = self.quantity * self.book.price
-        return price
+        self. price = self.quantity * self.book.price
+        return self.price
 
     def __str__(self):
         return f'{self.book.name} for { self.cart.customer.username }'
+
+
+class Order(models.Model):
+    cart = models.OneToOneField(
+        Cart,
+        on_delete=models.PROTECT,
+        related_name='order',
+        verbose_name='Order',
+    )
+    fio = models.CharField(
+        verbose_name='ФИО',
+        max_length=255,
+    )
+    phone = models.CharField(
+        verbose_name='Телефон',
+        max_length=20,
+    )
+    email = models.EmailField(
+        verbose_name='E-mail',
+        max_length=40,
+    )
+    DELIVERY_CHOICES = [
+        ('pu', 'Самовывоз'),
+        ('cr', 'Доставка курьером'),
+        ('pt', 'Доставка почтой')
+    ]
+    delivery = models.CharField(
+        verbose_name='Доставка',
+        max_length=2,
+        choices=DELIVERY_CHOICES,
+        default='pu'
+    )
+    create_date = models.DateTimeField(
+        verbose_name='Дата создания',
+        auto_now=False,
+        auto_now_add=True
+    )
+    update_date = models.DateTimeField(
+        verbose_name='Дата редактирования',
+        auto_now=True,
+        auto_now_add=False,
+    )
+    already_paid = models.BooleanField(
+        verbose_name='Оплачен',
+        default=False
+    )

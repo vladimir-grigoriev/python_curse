@@ -1,6 +1,13 @@
 {% extends 'customer_base.html' %}
 
-{% block new_books %}
+{% block body %}
+
+<!-- Каруселька -->
+{% include 'carousel.html' %}
+<!-- Фичерзы -->
+{% include 'features.html' %}
+
+
 
 <div class="container">
   <div class="row">
@@ -28,12 +35,8 @@
     {% endfor %}
   </div>
 </div>
-        
-   
-{% endblock new_books %}
 
 
-{% block most_popular %}
 
 <!-- Заголовок блока -->
 <div class="container">
@@ -70,4 +73,7 @@
     </div>
   </div>
 </div>
-{% endblock most_popular %}
+
+<!-- Блок с рекомендациями -->
+{% include 'recomendations.html' %}
+{% endblock body %}
