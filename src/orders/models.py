@@ -69,10 +69,19 @@ class BookInCart(models.Model):
         return self.price
 
     def __str__(self):
-        return f'{self.book.name} for { self.cart.customer.username }'
+        return f'{self.book.name}'
 
 
 class Order(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name='orders',
+        verbose_name='Пользователь',
+        blank=True,
+        null=True
+    )
+
     cart = models.OneToOneField(
         Cart,
         on_delete=models.PROTECT,

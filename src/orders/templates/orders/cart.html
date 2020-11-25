@@ -11,13 +11,15 @@
 
         <h1 class="my-4">Личный кабинет</h1>
         <div class="list-group">
-          <a href="{% url 'orders:history' %}" class="list-group-item">Истрория заказов</a>
+          <a href="{% url 'orders:history' %}" class="list-group-item">История заказов</a>
           <a href="#" class="list-group-item">Купоны</a>
           <a href="#" class="list-group-item">Выйти</a>
         </div>
 
       </div>
+
       <div class="col-lg-9">
+      {% block inner %}
 
         <h1 class="my-4">Корзина</h1>
         {% if book.pk %}
@@ -49,7 +51,9 @@
             <h6 class="my-4">Ваша корзина пока что пуста. Наполним ее товаром?</h1>
         {% endif %}
         
+      {% endblock inner %}
         </div>
+      
     </div>
 </div>
         

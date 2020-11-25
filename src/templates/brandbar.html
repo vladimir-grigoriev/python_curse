@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 text-center text-lg-left">
-                        <a href="">Название</a>
+                        <a href="">Сюда логотип</a>
                     </div>
                     <div class="col-xl-6 col-lg-5 text-center">
                         <form style="width: 100%; position: relative; padding: 0 10px;">
@@ -24,16 +24,24 @@
                     </div>
                     <div class="col-xl-4 col-lg-5 text-center">
                         <div class="user-panel" style="text-align: bottom">
-                            <div class="up-item" style="display: inline-block; font-size: 14px; margin-right: 29px;">
-                                <i class="fas fa-user" style="font-size: 22px;"></i>
-                                <a href="" style="font-size: 14px; color: #000;">Sign In</a>
-                                or
-                                <a href="" style="font-size: 14px; color: #000;">Create account</a>
-                            </div>
-                            <div class="up-item" style="display: inline-block; font-size: 14px;">
-                                <i class="fas fa-shopping-cart" style="display: inline-block; position: relative;"></i>
-                                <a href="{% url 'orders:cart' %}" style="font-size: 14px; color: #000;">Shopping cart</a>
-                            </div>
+                        {% if user %}
+                          <div class="up-item" style="display: inline-block; font-size: 14px; margin-right: 29px;">
+                              <i class="fas fa-user" style="font-size: 22px;"></i>
+                              <a href="" style="font-size: 14px; color: #000;">Hello</a>
+                          </div>
+                        {% else %}
+                          <div class="up-item" style="display: inline-block; font-size: 14px; margin-right: 29px;">
+                              <i class="fas fa-user" style="font-size: 22px;"></i>
+                              <a href="" style="font-size: 14px; color: #000;">Sign In</a>
+                              or
+                              <a href="" style="font-size: 14px; color: #000;">Create account</a>
+                          </div>
+                        {% endif %}
+                          <div class="up-item" style="display: inline-block; font-size: 14px;">
+                              <i class="fas fa-shopping-cart" style="display: inline-block; position: relative;"></i>
+                              <a href="{% url 'orders:cart' %}" style="font-size: 14px; color: #000;">Shopping cart</a>
+                          </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -45,7 +53,7 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="#">Start Bootstrap</a>
+          <a class="navbar-brand" href="{% url 'hello_world:homepage' %}">Тут ссылка на главную</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

@@ -73,10 +73,16 @@ class CartUpdateView(RedirectView):
                         obj_list.append(book_in_cart)
             BookInCart.objects.bulk_update(obj_list, ['quantity'])
         else:
+            user = self.request.user
+            if not isinstance(user, User):
+                user = None
             Order.objects.create(
+                user=user,
                 cart=Cart.objects.get(pk=cart_id)
             )
+            self.request.session['order_id'] = str(self.request.session['cart_id'])
             del self.request.session['cart_id']
+            return reverse_lazy('orders:create_order')
             
         return reverse_lazy('orders:cart')
 
@@ -91,11 +97,18 @@ class CreateOrderView(UpdateView):
         'email',
         'delivery'
     ]
+    def get_object(self, *args, **kwargs):
+        obj = Order.objects.get(cart__pk__exact=self.request.session['order_id'])
+        print(obj)
+        return obj
     
 class HistoryDetailView(DetailView):
-    model = Order
+    model = User
     template_name = 'orders/history.html'
-    
+    def get_object(self, *args, **kwargs):
+        obj = User.objects.get(username=self.request.user)
+        print(obj.orders.all)
+        return obj
     
    
 
