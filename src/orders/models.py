@@ -69,7 +69,7 @@ class BookInCart(models.Model):
         return self.price
 
     def __str__(self):
-        return f'{self.book.name}'
+        return f'{self.book.name}, Cart №{self.cart.pk}'
 
 
 class Order(models.Model):
@@ -81,7 +81,19 @@ class Order(models.Model):
         blank=True,
         null=True
     )
-
+    STATUS_CHOICES = [
+        ('var1', 'Принят в обработку'),
+        ('var2', 'Обработан'),
+        ('var3', 'Оплачен, формируется к отгрузке'),
+        ('var4', 'Отправлен, '),
+        ('var5', 'Не отвечает на звонок'),
+    ]
+    status = models.CharField(
+        verbose_name='Статус',
+        max_length=4,
+        choices=STATUS_CHOICES,
+        default='var1'
+    )
     cart = models.OneToOneField(
         Cart,
         on_delete=models.PROTECT,
@@ -125,3 +137,6 @@ class Order(models.Model):
         verbose_name='Оплачен',
         default=False
     )
+
+    class Meta:
+        ordering = ['-create_date']

@@ -1,5 +1,8 @@
+{% extends 'manager_base.html' %}
+{% block body %}
 <h1>Удалить ?</h1>
 <form action="" method="post" target="_blank">
     {% csrf_token %}
     <a href=""><button type="submit">Удалить</button></a>
 </form>
+{% endblock body %}

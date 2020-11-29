@@ -4,6 +4,7 @@ from .models import Cart, User, BookInCart, Order
 from products.models import Book
 from django.urls import reverse_lazy
 from .forms import OrderForm
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class CartView(TemplateView):
@@ -63,6 +64,7 @@ class CartUpdateView(RedirectView):
             # redirect to error page
             pass
         button = self.request.POST.get('submit_button')
+        print(self.request.POST)
         if button == 'edit':
             obj_list = []
             for book_in_cart_id, quantity in self.request.POST.items():
@@ -83,13 +85,14 @@ class CartUpdateView(RedirectView):
             self.request.session['order_id'] = str(self.request.session['cart_id'])
             del self.request.session['cart_id']
             return reverse_lazy('orders:create_order')
-            
+        print(button)
         return reverse_lazy('orders:cart')
 
 
-class CreateOrderView(UpdateView):
+class CreateOrderView(SuccessMessageMixin, UpdateView):
     template_name = 'orders/order.html'
     success_url = reverse_lazy('hello_world:homepage')
+    success_message = "Ваш заказ принят!\nНаши менеджеры свяжутся с вами в ближайшее время"
     model = Order
     fields = [
         'fio',
@@ -99,16 +102,9 @@ class CreateOrderView(UpdateView):
     ]
     def get_object(self, *args, **kwargs):
         obj = Order.objects.get(cart__pk__exact=self.request.session['order_id'])
-        print(obj)
         return obj
     
-class HistoryDetailView(DetailView):
-    model = User
-    template_name = 'orders/history.html'
-    def get_object(self, *args, **kwargs):
-        obj = User.objects.get(username=self.request.user)
-        print(obj.orders.all)
-        return obj
+
     
    
 

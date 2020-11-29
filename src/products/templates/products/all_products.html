@@ -1,51 +1,96 @@
-{% extends 'manager_base.html' %}
-{% block list %}
-<h1>Список книг</h1>
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Наименование</th>
-            <th scope="col">Изображение</th>
-            <th scope="col">Авторы</th>
-            <th scope="col">Количество</th>
-            <th scope="col">Цена, руб.</th>
-            <th scope="col">Действие</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for book in books %}
-        <tr>
-            <th scope="row">{{ book.pk }}</th>
-            <td>{{ book.name }}</td>
-            <td>{{ book.foto }}</td>
-            <td>{{ book.author.all|join:', ' }}</td>
-            <td>{{ book.quantity }}</td>
-            <td>{{ book.price }}</td>
-            <td>
-                <a href="{% url 'products:product_detailed' book.pk %}">
-                    <button class="btn btn-success">
-                        <i class="fas fa-info-circle"></i>
-                    </button>
-                </a>
-                <a href="{% url 'products:product_update' book.pk %}">
-                    <button class="btn btn-warning">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </a>
-                <a href="{% url 'products:delete_product' book.pk %}">
-                    <button class="btn btn-danger">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<form action="{% url 'products:create_new_product' %}" method="post">
-    {% csrf_token %}
-    <button class="btn btn-danger btn-block">Добавить книгу</button>
-</form>
-{% endblock list %}
+{% extends 'customer_base.html' %}
+{% block body %}
+<div class="container">
+<div class="row">
+  <h1 class="display-5" style="margin: 20px 0px">
+    Книги {% if genre_name %}в жанре "{{ genre_name }}"{% endif %}
+          {% if searching_value %} по запросу "{{ searching_value }}"{% endif %}
+  </h1>
+</div>
+  {% if object_list %}
+  <div class="row">
+    {% for book in object_list %}
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ book.foto.url }}" alt="Card image cap">
+        <div class="card-body">
+          <div class="text-truncate">
+            <h5 class="card-title">
+              <a href="{% url 'products:product_detailed' book.pk %}">
+                <strong>{{ book.name }}</strong>
+              </a>
+            </h5>
+          </div>
+          <p class="card-text" style="text-overflow: ellipsis;">
+            <small>
+              {{ book.author.all|join:", " }}, {{ book.year_published }} 
+            </small>
+          </p>
+          <p>
+            {% if book.rating > 8 %}
+            <small>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% elif book.rating > 6 %}
+            <small>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% elif book.rating > 4 %}
+            <small>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% elif book.rating > 2 %}
+            <small>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% else %}
+            <small>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% endif %}
+          </p>
+          <div class="row">
+            <div class="col-6"><strong>{{ book.price }}</strong> руб.</div>
+            <div class="col-6"><a href="{% url 'orders:cart' %}?book={{ book.pk }}" class="btn btn-primary">В корзину</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <nav aria-label="Page navigation example" style="text-align: center; margin-top: 2em; font-size: large;">
+    <ul class="pagination" style="justify-content: center;">
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+      {% endif %}
+    </ul>
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+  </nav>
+  {% else %}
+  <div class="jumbotron" style="background-color: white; height: 60vh;">
+    <div class="container">
+      <h1 class="display-4">Тут пусто =(</h1>
+      <p class="lead">К сожалению, по вашему запросу ничего не было найдено. Может, где опечатку сделали?</p>
+      <a href="{% url 'hello_world:homepage' %}" class="btn btn-outline-secondary">Назад на главную</a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock body %}

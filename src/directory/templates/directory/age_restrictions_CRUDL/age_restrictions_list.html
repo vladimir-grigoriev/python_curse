@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Список возрастных ограничений</h1>
+{% extends 'manager_base.html' %}
+{% block body %}
+<h1>Список возрастных ограничений</h1>
     <ul>
     {% for rest in age_restrictions %}
         <li><a href="{{ rest.pk }}">{{ rest.age_restrictions }}</a></li>
     {% endfor %}
     </ul>
     <a href="{% url 'create_age_restriction' %}"><button>Добавить возрастное ограничение</button></a>
-</body>
-</html>
+{% endblock body %}
+    

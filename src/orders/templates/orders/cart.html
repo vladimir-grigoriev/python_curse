@@ -1,61 +1,59 @@
 {% extends 'customer_base.html' %}
-
 {% block body %}
 
-
-<div class="container" style="margin-bottom: 2em;">
-
-    <div class="row">
-
-      <div class="col-lg-3">
-
-        <h1 class="my-4">Личный кабинет</h1>
-        <div class="list-group">
-          <a href="{% url 'orders:history' %}" class="list-group-item">История заказов</a>
-          <a href="#" class="list-group-item">Купоны</a>
-          <a href="#" class="list-group-item">Выйти</a>
-        </div>
-
-      </div>
-
-      <div class="col-lg-9">
-      {% block inner %}
-
-        <h1 class="my-4">Корзина</h1>
-        {% if book.pk %}
-            Cart ID: {{ cart.pk }}<br>
-        Book you just have added:{{ book.pk }} {{ book.name }}<hr>
-
-        Total price: {{ cart.total_price }}
-
-        <form action="{% url 'orders:update' %}" method="post">
+<div class="container">
+  <div class="row">
+    <div class="col" style="margin-bottom: 2em;">
+      <h1 class="my-4">Корзина</h1>
+      Book you just have added:{{ book.pk }} {{ book.name }}
+      <form action="{% url 'orders:update' %}" method="post">
         <table class="table">
-                {% csrf_token %}
-            {% for book_in_cart in cart.books.all %}
+          <thead>
             <tr>
-                <td>{{ book_in_cart.book.name }}</td>
-                <td>quantity - <input type="number" name="{{ book_in_cart.pk }}" id="" value="{{ book_in_cart.quantity }}"></td>
-                <td>price - {{ book_in_cart.price }}</td>
-                <td>
-                    <a href="{% url 'orders:book_in_cart-del' book_in_cart.pk %}">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                </td>
+              <th scope="col"></th>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col"></th>
             </tr>
-            {% endfor %} 
+          </thead>
+          {% csrf_token %}
+          {% for book_in_cart in cart.books.all %}
+          <tr>
+            <td>
+              <div class="container" style="max-width: 100px;">
+                <img src="{{ book_in_cart.book.foto.url }}" alt="" class="img-fluid">  
+              </div>
+            </td>
+            <td>
+              <p class="h5">{{ book_in_cart.book.name }}</p>
+              <p class="h6"><small>{{ book_in_cart.book.author.all|join:", " }}</small></p>
+            </td>
+            <td>{{ book_in_cart.price }}</td>
+            <td><input type="number" name="{{ book_in_cart.pk }}" id="" value="{{ book_in_cart.quantity }}" style="max-width: 60px; text-align: center;"></td>
+            <td>
+              <a href="{% url 'orders:book_in_cart-del' book_in_cart.pk %}">
+                <i class="fas fa-trash-alt"></i>
+              </a>
+            </td>
+          </tr>
+          {% endfor %} 
         </table>
-            <button type="submit" class="btn btn-danger" name="submit_button" value="checkout">Checkout</button>
-            <button type="submit" class="btn btn-success" name="submit_button" value="edit">Refresh</button>
-            </form>
-        {% else %}
-            <h6 class="my-4">Ваша корзина пока что пуста. Наполним ее товаром?</h1>
-        {% endif %}
-        
-      {% endblock inner %}
+        <p class="h2" style="text-align: right;">Total price:</p>
+        <p class="h1" style="text-align: right;">{{ cart.total_price }} руб.</p> 
+        <div class="row">
+          <div class="col">
+            <a href="{% url 'hello_world:homepage' %}" class="btn btn-link">
+              <i class="fas fa-arrow-left"></i> Continue shopping
+            </a>
+          </div>
+          <div class="col" style="text-align: end; margin-top: 1em;">
+            <button type="submit" class="btn btn-outline-primary btn-lg" name="submit_button" value="edit">Обновить</button>
+            <button type="submit" class="btn btn-primary btn-lg" name="submit_button" value="checkout">Купить</button>
+          </div>
         </div>
-      
+      </form>
     </div>
+  </div>
 </div>
-        
-
 {% endblock body %}

@@ -1,10 +1,16 @@
-{% extends 'manager_base.html' %}
+{% extends 'customer_base.html' %}
 
-{% block list %}
-Del Book in cart 
-<h2>Delete {{ object }}</h2>
-<form action="" method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-{% endblock list %}
+{% block body %}
+<div class="container" style="min-height: 60vh;">
+  <div class="row align-items-center">
+    <div class="col align-self-center">
+      <h2>Delete {{ object }}?</h2>
+      <form action="" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Delete</button>
+      </form> 
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,55 @@
+{% extends 'manager_base.html' %}
+{% block body %}
+<h1>Список книг</h1>
+
+<table class="table table-sm table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Наименование</th>
+            <th scope="col">Изображение</th>
+            <th scope="col">Авторы</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена, руб.</th>
+            <th scope="col">Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <th scope="row">{{ book.pk }}</th>
+            <td>{{ book.name }}</td>
+            <td>
+                <div class="container" style="max-width: 100px;">
+                  <img src="{{ book.foto.url }}" alt="" class="img-fluid">  
+                </div>
+            </td>
+            <td>{{ book.author.all|join:', ' }}</td>
+            <td>{{ book.quantity }}</td> 
+            <td>{{ book.price }}</td>
+            <td>
+                <a href="{% url 'products:product_detailed' book.pk %}">
+                    <button class="btn btn-success">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                </a>
+                <a href="{% url 'products:product_update' book.pk %}">
+                    <button class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </a>
+                <a href="{% url 'products:delete_product' book.pk %}">
+                    <button class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form action="{% url 'products:create_new_product' %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger btn-block">Добавить книгу</button>
+</form>
+{% endblock body %}

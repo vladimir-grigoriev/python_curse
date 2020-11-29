@@ -2,15 +2,18 @@
 <!-- Navigation -->
 <header class="header-section">
     <div class="header-top" style="padding: 18px 0 14px;">
-        <div class="container-fluid" style="background-color: #f8f9fa;">
+        <div class="container-fluid">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 text-center text-lg-left">
-                        <a href="">Сюда логотип</a>
+                      <a href="{% url 'hello_world:homepage' %}">
+                        <img src="{% static 'imgs/logo.png' %}" alt="" class="img-fluid">
+                      </a>
+                        
                     </div>
                     <div class="col-xl-6 col-lg-5 text-center">
-                        <form style="width: 100%; position: relative; padding: 0 10px;">
-                            <input type="text" placeholder="Search on magaz..." style="width: 100%; 
+                        <form action="{% url 'products:all_products_list' %}" method="GET" style="width: 100%; position: relative; padding: 10px 10px;">
+                            <input name="search" type="text" placeholder="Search on magaz..." style="width: 100%; 
                                 height: 44px; 
                                 font-size: 14px; 
                                 border-radius: 50px; 
@@ -22,19 +25,19 @@
                             </button>
                         </form>
                     </div>
-                    <div class="col-xl-4 col-lg-5 text-center">
-                        <div class="user-panel" style="text-align: bottom">
-                        {% if user %}
+                    <div class="col-xl-4 col-lg-5 text-center" style="padding: 15px;">
+                        <div class="user-panel">
+                        {% if user.is_authenticated %}
                           <div class="up-item" style="display: inline-block; font-size: 14px; margin-right: 29px;">
                               <i class="fas fa-user" style="font-size: 22px;"></i>
-                              <a href="" style="font-size: 14px; color: #000;">Hello</a>
+                              <a href="{% url 'user_profile:profile' %}" style="font-size: 14px; color: #000;">Hello, {{ user.username }}</a>
                           </div>
                         {% else %}
                           <div class="up-item" style="display: inline-block; font-size: 14px; margin-right: 29px;">
                               <i class="fas fa-user" style="font-size: 22px;"></i>
                               <a href="" style="font-size: 14px; color: #000;">Sign In</a>
                               or
-                              <a href="" style="font-size: 14px; color: #000;">Create account</a>
+                              <a href="{% url 'registration:registration' %}" style="font-size: 14px; color: #000;">Create account</a>
                           </div>
                         {% endif %}
                           <div class="up-item" style="display: inline-block; font-size: 14px;">
@@ -48,30 +51,37 @@
             </div>
         </div>
     </div>
-    <div class="main-navbar">
-        
-    </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="{% url 'hello_world:homepage' %}">Тут ссылка на главную</a>
+        <div class="container" style="font-size: large;">
+          <a class="navbar-nav nav-link" style="color: #ffffff;" href="{% url 'hello_world:homepage' %}">Главная</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home
-                  <span class="sr-only">(current)</span>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'products:all_products_list' %}" style="color: #ffffff;">Каталог</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a style="color: #ffffff;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Жанры
                 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for g in genres %}
+                    <a class="dropdown-item" href="{% url 'products:all_products_list' %}?genre={{g.pk}}">{{ g.genre_name }}</a>
+                  {% endfor %}
+                </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#" style="color: #ffffff;">Доставка и оплата</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
+                <a class="nav-link" href="#" style="color: #ffffff;">Контакты</a>
               </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" style="color: #ffffff;">
               <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                Курс BYN/USD: {{ rate }}
               </li>
             </ul>
           </div>

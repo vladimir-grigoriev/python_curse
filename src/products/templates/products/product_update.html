@@ -1,6 +1,6 @@
 {% extends 'manager_base.html' %}
 {% load crispy_forms_tags %}
-{% block list %}
+{% block body %}
 <h1>Редактирование книги "{{ object.name }}"</h1>
 <form action="" method="post" class="form-control">
     {% csrf_token %}
@@ -8,4 +8,4 @@
     <button type="submit" class="btn btn-danger">Изменить</button>
 </form>
 
-{% endblock list %}
+{% endblock body %}

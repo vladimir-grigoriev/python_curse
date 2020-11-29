@@ -1,4 +1,7 @@
+{% extends 'manager_base.html' %}
+{% block body %}
 <h1>Карточка формата книги</h1>
 <h2>Книжный формат - {{ object.book_format }}</h2>
 <a href="{% url 'book_format_update' object.pk %}"><button>Редактировать формат</button></a>
 <a href="{% url 'book_format_delete' object.pk %}"><button>Удалить формат</button></a>
+{% endblock body %}

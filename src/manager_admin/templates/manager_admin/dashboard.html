@@ -1,0 +1,76 @@
+{% extends 'manager_base.html' %}
+{% block body %}
+
+
+<h1>Заказы</h1>
+<table class="table table-sm table-hover">
+    <thead >
+      <tr class="table-active table-bordered">
+        <th scope="col"></th>
+        <th scope="col">Дата создания</th>
+        <th scope="col">Заказ</th>
+        <th scope="col">Покупатель</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Телефон</th>
+        <th scope="col">Email</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">Товар</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order in object_list %}
+    <tr>
+      <td>
+        <div class="dropdown show">
+          <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: initial;">
+            <i class="fas fa-align-justify"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">
+              <i class="fas fa-info-circle"></i> Посмотреть подробную информацию
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fas fa-edit"></i> Изменить заказ
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fas fa-trash-alt"></i> Удалить заказ
+            </a>
+          </div>
+        </div>
+      </td>
+      <td>
+        {{ order.create_date.date }}<br>
+        {{ order.create_date.time }}
+      </td>
+      <th scope="row">№ {{ order.pk }}</th>
+        <td>{% if order.user.username %}{{ order.user.username }}{% else %}anonimus{% endif %}</td>
+        <td>{{ order.get_status_display }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.email }}</td>
+        <td>{{ order.cart.total_price }}</td>
+        <td>
+          {% for book in order.cart.books.all %}
+            {{ book.book.pk }} "{{ book.book.name }}"<br>
+          {% endfor %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example" style="text-align: center;">
+    <ul class="pagination" style="justify-content: center;">
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+      {% endif %}
+    </ul>
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+  </nav>
+</div>
+{% endblock body %}

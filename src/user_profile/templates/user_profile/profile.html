@@ -1,0 +1,77 @@
+{% extends 'customer_base.html' %}
+
+{% block body %}
+
+
+<div class="container" style="margin-bottom: 2em;">
+
+  <div class="row">
+
+    <div class="col-lg-3">
+
+      <div class="list-group">
+        <a style="margin-top: 2em;" href="{% url 'user_profile:profile' %}" class="list-group-item">Профиль</a>
+        <a href="{% url 'user_profile:history' %}" class="list-group-item">История заказов</a>
+        <a href="#" class="list-group-item">Купоны</a>
+        <a href="#" class="list-group-item">Выйти</a>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      {% block inner %}
+      <h1 class="my-4">Профиль пользователя {{ user.username }}</h1>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th scope="row">Логин</th>
+            <td>{{ object.username }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Пароль</th>
+            <td><a href="">Сменить пароль</a></td>
+          </tr>
+          <tr>
+            <th scope="row">E-mail</th>
+            <td>{{ object.email }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Имя</th>
+            <td>{{ object.first_name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Фамилия</th>
+            <td>{{ object.last_name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Телефон</th>
+            <td>{{ object.profile.phone }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Группа</th>
+            <td>{{ objec.group.all }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Страна</th>
+            <td>{{ object.profile.country }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Город</th>
+            <td>{{ object.profile.city }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Индекс</th>
+            <td>{{ object.profile.index }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Адрес</th>
+            <td>{{ object.profile.adress }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-danger">Редактировать</button>
+      {% endblock inner %}
+    </div>  
+  </div>
+</div>
+        
+
+{% endblock body %}

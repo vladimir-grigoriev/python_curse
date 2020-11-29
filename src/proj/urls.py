@@ -5,13 +5,15 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('s-admin/', admin.site.urls),
+    path('admin/', include('manager_admin.urls', namespace='manager_admin')),
     path('', include('hello_world.urls', namespace='hello_world')),
     path('directories/', include('directory.urls'), name='hello'),
     path('products/', include('products.urls', namespace='products')),
     path('registration/', include('registration.urls', namespace='registration')),
     path('login/', include('login.urls', namespace='login')),
     path('cart/', include('orders.urls', namespace='orders')),
+    path('profile/', include('user_profile.urls', namespace='user_profile'))
 ]
 
 if settings.DEBUG:

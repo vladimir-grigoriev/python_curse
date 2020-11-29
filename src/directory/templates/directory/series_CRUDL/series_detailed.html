@@ -1,6 +1,9 @@
+{% extends 'manager_base.html' %}
+{% block body %}
 <h1>Карточка Серии</h1>
 <h2>Серия - {{ series.series_name }}</h2>
 <h2>Автор - {{ series.author.author_name }}</h2>
 <h2>Книги этой серии - {% for book in series.books.all %}book.name{% endfor %}</h2>
 <a href={% url 'series_update' series.pk %}><button>Редактировать серию</button></a>
 <a href="/directories/series/{{ series.pk }}/delete"><button>Удалить серию</button></a>
+{% endblock body %}

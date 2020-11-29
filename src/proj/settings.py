@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'registration',
     'login',
     'orders',
+    'user_profile',
+    'manager_admin',
 
     'crispy_forms',
 ]

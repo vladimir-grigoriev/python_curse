@@ -1,4 +1,4 @@
-{% extends 'orders/cart.html' %}
+{% extends 'user_profile/profile.html' %}
 
 {% block inner %}
 <h1 class="my-4">История заказов</h1>
@@ -9,6 +9,7 @@
       <th scope="col">Placed</th>
       <th scope="col">Price</th>
       <th scope="col">Status</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,12 @@
       <td>{{ order.create_date }}</td>
       <td>{{ order.cart.total_price }}</td>
       <td>Исполнен</td>
+      <td>
+        <a href="{% url 'user_profile:detailed_order' %}" class="btn btn-link">
+          <input type="hidden" name="order" value="{{ order.pk }}">
+          <i class="fas fa-info-circle"></i>
+        </a>
+      </td>
     </tr>
   {% endfor %}
   </tbody>

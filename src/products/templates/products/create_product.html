@@ -1,6 +1,9 @@
+{% extends 'manager_base.html' %}
+{% block body %}
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Добавить</button>
     <a href="{% url 'products:all_products_list' %}"><button type="button">Назад</button></a>
 </form>
+{% endblock body %}

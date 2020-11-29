@@ -1,23 +1,141 @@
-<h1>"{{ book.name }}", {% for author in book.author.all %}{{ author }} {% endfor %}</h1>
-{{ book }}
-<ul>
-    <li>Название книги:{{ book.name }}</li>
-    <li>Фото: {{ book.name }}</li>
-    <li>Цена: {{ book.foto }}</li>
-    <li>Авторы: {{ book.price }}</li>
-    <li>Серия: {{ book.series }}</li>
-    <li>Жанры: {{ book.genres }}</li>
-    <li>Год издания: {{ book.year_published }}</li>
-    <li>Число страниц: {{ book.number_of_pages }}</li>
-    <li>Тип переплета: {{ book.binding }}</li>
-    <li>Формат: {{ book.format }}</li>
-    <li>ISBN: {{ book.isbn }}</li>
-    <li>Вес, гр.: {{ book.weight }}</li>
-    <li>Возрастные ограничения: {{ book.age_restrictions }}</li>
-    <li>Издательство: {{ book.publisher }}</li>
-    <li>Количество на складе: {{ book.quantity }}</li>
-    <li>Доступность для заказа: {{ book.book_available }}</li>
-    <li>Рейтинг: {{ book.rating }}</li>
-</ul>
-<a href="{% url 'products:all_products_list' %}"><button>Назад</button></a>
-{{ form }}
+{% extends 'customer_base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row" style="margin-top: 2em;">
+    <div class="col col-lg-4" style="justify-content: right;">
+      <img src="{{ book.foto.url }}" alt="" style="max-width: -webkit-fill-available; max-height: -webkit-fill-available;">
+      <button class="btn btn-block btn-outline-secondary" style="margin-top: 1em;">
+        <i class="far fa-star"></i> Добавить в избранное
+      </button>
+    </div>
+    <div class="col-8">
+      <h1 class="display-5">{{ book.name }}</h1>
+      <div class="row">
+        <div class="col">
+          <p style="margin-top: 1em;">{{book.author.all|join:", "}}</p>
+        </div>
+        <div class="col">
+          <p style="margin-top: 1em;">
+            {% if book.rating > 8 %}
+            <small>Рейтинг: 
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% elif book.rating > 6 %}
+            <small>Рейтинг: 
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% elif book.rating > 4 %}
+            <small>Рейтинг: 
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% elif book.rating > 2 %}
+            <small>Рейтинг: 
+              <i class="fas fa-star" style="color: gold;"></i>
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% else %}
+            <small>Рейтинг: 
+              <i class="fas fa-star" style="color: gold;"></i>
+            </small>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col">
+          <p class="h3">{{ book.price }} руб.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <a class="btn btn-primary btn-lg" href="{% url 'orders:cart' %}?book={{ book.pk }}">
+            <i class="fas fa-shopping-cart"></i> Положить в корзину
+          </a>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col">
+          <p>
+            {{ book.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <p class="h4">Описание</p>
+
+  <div class="row">
+    <div class="col col-md-8">
+      <table class="table table-sm table-hover">
+        <tbody>
+          <tr>
+            <th scope="row">Название книги</th>
+            <td>{{ book.name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Автор</th>
+            <td>{{ book.author.all|join:", " }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Серия</th>
+            <td>{{ book.series }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Жанры</th>
+            <td>{{ book.genres.all|join:", " }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Год издания</th>
+            <td>{{ book.year_published }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Число страниц</th>
+            <td>{{ book.nubmer_of_pages }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Тип переплета</th>
+            <td>{{ book.binding }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Формат</th>
+            <td>{{ book.book_format }}</td>
+          </tr>
+          <tr>
+            <th scope="row">ISBN</th>
+            <td>{{ book.book_isbn }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Вес, гр.</th>
+            <td>{{ book.weight }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Возрастные ограничения</th>
+            <td>{{ book.age_restrictions }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Издательство</th>
+            <td>{{ book.publisher }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Количество на складе</th>
+            <td>{{ book.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>  
+</div>
+
+{% endblock body %}

@@ -15,6 +15,11 @@ class Book(models.Model):
         verbose_name='Фото обложки',
         upload_to='books/'
     )
+    description = models.TextField(
+        verbose_name='Описание',
+        blank=True,
+        null=True
+    )
     price = models.DecimalField(
         verbose_name='Цена',
         max_digits=6,
