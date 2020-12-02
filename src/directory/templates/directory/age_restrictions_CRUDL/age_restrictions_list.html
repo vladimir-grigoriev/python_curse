@@ -1,11 +1,35 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<h1>Список возрастных ограничений</h1>
-    <ul>
-    {% for rest in age_restrictions %}
-        <li><a href="{{ rest.pk }}">{{ rest.age_restrictions }}</a></li>
-    {% endfor %}
-    </ul>
-    <a href="{% url 'create_age_restriction' %}"><button>Добавить возрастное ограничение</button></a>
-{% endblock body %}
+<div class="row">
+  <div class="col"><h1>Список возрастных ограничений</h1></div>
+</div>
+<div class="row">
+  <div class="col">
+    <a href="{% url 'create_age_restriction' %}"><button class="btn btn-success"><i class="fas fa-plus-circle"></i> Добавить возрастное ограничение</button></a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Ограничение</th>
+          <th scope="col">Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for rest in age_restrictions %}
+        <tr>
+          <th scope="row">{{ rest.pk }}</th>
+          <td>{{ rest.age_restrictions }}</td>
+          <td>
+              <a href="{{ rest.pk }}"><button class="btn btn-success"><i class="fas fa-info-circle"></i></button></a>
+              <a href="{% url 'age_restriction_update' rest.pk %}"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+              <a href="{% url 'age_restriction_delete' rest.pk %}"><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
+              </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+   
     
+{% endblock body %}

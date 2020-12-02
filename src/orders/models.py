@@ -87,6 +87,7 @@ class Order(models.Model):
         ('var3', 'Оплачен, формируется к отгрузке'),
         ('var4', 'Отправлен, '),
         ('var5', 'Не отвечает на звонок'),
+        ('var6', 'Отменён покупателем')
     ]
     status = models.CharField(
         verbose_name='Статус',
@@ -103,6 +104,11 @@ class Order(models.Model):
     fio = models.CharField(
         verbose_name='ФИО',
         max_length=255,
+    )
+    adress = models.TextField(
+        verbose_name='Адрес доставки',
+        blank=True,
+        null=True
     )
     phone = models.CharField(
         verbose_name='Телефон',
@@ -122,6 +128,11 @@ class Order(models.Model):
         max_length=2,
         choices=DELIVERY_CHOICES,
         default='pu'
+    )
+    comment = models.TextField(
+        verbose_name='Комментарий',
+        blank=True,
+        null=True
     )
     create_date = models.DateTimeField(
         verbose_name='Дата создания',

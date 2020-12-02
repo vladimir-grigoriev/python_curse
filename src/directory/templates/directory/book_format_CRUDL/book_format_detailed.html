@@ -1,7 +1,19 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<h1>Карточка формата книги</h1>
-<h2>Книжный формат - {{ object.book_format }}</h2>
-<a href="{% url 'book_format_update' object.pk %}"><button>Редактировать формат</button></a>
-<a href="{% url 'book_format_delete' object.pk %}"><button>Удалить формат</button></a>
+<div class="row">
+    <div class="col">
+        <h1>Карточка формата книги</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2>Книжный формат - {{ object.book_format }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href="{% url 'book_format_update' object.pk %}"><button class="btn btn-success">Редактировать формат</button></a>
+        <a href="{% url 'book_format_delete' object.pk %}"><button class="btn btn-danger">Удалить формат</button></a>
+    </div>
+</div>
 {% endblock body %}

@@ -85,7 +85,6 @@ class CartUpdateView(RedirectView):
             self.request.session['order_id'] = str(self.request.session['cart_id'])
             del self.request.session['cart_id']
             return reverse_lazy('orders:create_order')
-        print(button)
         return reverse_lazy('orders:cart')
 
 
@@ -98,14 +97,25 @@ class CreateOrderView(SuccessMessageMixin, UpdateView):
         'fio',
         'phone',
         'email',
-        'delivery'
+        'adress',
+        'delivery',
+        'comment'
     ]
     def get_object(self, *args, **kwargs):
         obj = Order.objects.get(cart__pk__exact=self.request.session['order_id'])
         return obj
     
 
+class OrderUpdateView(UpdateView):
+    model = Order
+    template_name = "orders/delete_order.html"
+    success_url = reverse_lazy('hello_world:homepage')
+    fields = '__all__'
     
-   
-
-    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.request.POST['button'] == 'delete':
+            self.object.status = 'var6'
+            # order.save()
+            
+        return super().post(request, *args, **kwargs)

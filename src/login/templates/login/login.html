@@ -1,1 +1,30 @@
-<h2>Login</h2>
+{% extends 'customer_base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="container" style="margin-top: 15px; margin-bottom: 15px; min-height: 65vh;">
+  <div class="row align-items-center" style="justify-content: center;">
+    <div class="col-6 align-self-center">
+      <h2>Login</h2>
+    </div>
+  </div>
+  <div class="row align-items-center" style="justify-content: center;">
+    <div class="col-6 align-self-center">
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-danger btn-lg" hre>Войти</button>
+        <span class='alert alert-light'><a href="{% url 'registration:registration' %}">Нет аккаунта? Зарегистрируйся</a></span>
+      </form>
+    </div>
+
+  </div>
+</div>
+{% endblock body %}

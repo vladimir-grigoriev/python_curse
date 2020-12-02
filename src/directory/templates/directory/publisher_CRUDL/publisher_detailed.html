@@ -1,7 +1,19 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<h1>Карточка издательства</h1>
-<h2>Название - {{ publisher.publisher_name }}</h2>
-<a href={% url 'publisher_update' publisher.pk %}><button>Редактировать издательство</button></a>
-<a href={% url 'publisher_delete' publisher.pk %}><button>Удалить издательство</button></a>
+<div class="row">
+    <div class="col">
+        <h1>Карточка издательства</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2>Название - {{ publisher.publisher_name }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href={% url 'publisher_update' publisher.pk %}><button class="btn btn-success">Редактировать издательство</button></a>
+        <a href={% url 'publisher_delete' publisher.pk %}><button class="btn btn-danger">Удалить издательство</button></a>
+    </div>
+</div>
 {% endblock body %}

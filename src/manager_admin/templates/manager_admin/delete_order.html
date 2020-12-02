@@ -1,0 +1,13 @@
+{% extends 'manager_base.html' %}
+{% block body %}
+<div class="row">
+    <div class="col">
+        <h1>Удалить заказ №{{ object.pk }}?</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Удалить</button>
+        </form>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,103 @@
+{% extends 'manager_base.html' %}
+{% block body %}
+<h1>Заказ</h1>
+<h2 style="margin-bottom: 2em;">Параметры заказа</h2>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <table class="table" style="border-style: none;">
+      <tbody>
+        <tr>
+          <th scope="row" style="text-align: end;">ID: </th>
+          <td>{{ object.pk }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Создан:</th>
+          <td>{{ object.create_date }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Последнее изменение:</th>
+          <td>{{ object.update_date }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Статус:</th>
+          <td>{{ object.get_status_display }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Покупатель:</th>
+          <td>{{ object.user.username }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">ФИО:</th>
+          <td>{{ object.fio }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Телефон:</th>
+          <td>{{ object.phone }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Email:</th>
+          <td>{{ object.user.email }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Местоположение:</th>
+          <td>{{ object.user.profile.country }}, {{ object.user.profile.city }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Адрес доставки:</th>
+          <td>{{ object.adress }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Индекс:</th>
+          <td>{{ object.user.profile.index }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Служба доставки:</th>
+          <td>{{ object.get_delivery_display }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align: end;">Комментарий клиента:</th>
+          <td>{{ object.comment }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<h2>Состав заказа</h2>
+<table class="table">
+  <thead>
+    <tr style="text-align: center;">
+      <th scope="col">Изображение</th>
+      <th scope="col">Название</th>
+      <th scope="col">Количество</th>
+      <th scope="col">Цена</th>
+      <th scope="col">Сумма</th>
+    </tr>
+  </thead>
+  <tbody style="text-align: center;">
+  {% for obj in object.cart.books.all %}
+      <th scope="row"><img src="{{ obj.book.foto.url }}" alt="" style="max-height: 100px;"></th>
+      <td>{{ obj.book.name }}</td>
+      <td>{{ obj.quantity }}</td>
+      <td>{{ obj.price }}</td>
+      <td>{{ obj.construct_price }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<hr>
+<div class="row">
+  <div class="col-5 col-md-6">
+    <a href="{% url 'manager_admin:edit' object.pk %}" style="text-decoration: solid;">
+      <button class="btn btn-outline-success btn-block">Редактировать</button>
+    </a>
+  </div>
+  <div class="col-7 col-md-6">
+      <p class="h2" style="text-align: right; font-size: 2rem;">Итого к оплате:</p>
+      <p class="h1" style="text-align: right; padding-bottom: 1em; font-size: 2rem;">{{ object.cart.total_price }} руб.</p>
+  </div>
+</div>
+  
+  
+
+
+{% endblock body %}

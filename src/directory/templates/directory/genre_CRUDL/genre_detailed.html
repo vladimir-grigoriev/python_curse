@@ -1,7 +1,19 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<h1>Карточка жанра</h1>
-<h2>Название - {{ genre.genre_name }}</h2>
-<a href={% url 'genre_update' genre.pk %}><button>Редактировать жанр</button></a>
-<a href={% url 'genre_delete' genre.pk %}><button>Удалить жанр</button></a>
+<div class="row">
+    <div class="col">
+        <h1>Карточка жанра</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2>Название - {{ genre.genre_name }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href={% url 'genre_update' genre.pk %}><button class="btn btn-success">Редактировать жанр</button></a>
+        <a href={% url 'genre_delete' genre.pk %}><button class="btn btn-danger">Удалить жанр</button></a>
+    </div>
+</div>
 {% endblock body %}

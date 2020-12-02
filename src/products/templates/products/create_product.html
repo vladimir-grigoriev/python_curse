@@ -1,9 +1,14 @@
 {% extends 'manager_base.html' %}
+{% load crispy_forms_tags %}
 {% block body %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Добавить</button>
-    <a href="{% url 'products:all_products_list' %}"><button type="button">Назад</button></a>
-</form>
+<div class="row">
+    <div class="col-6">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Добавить</button>
+            <a href="{% url 'products:all_products_list' %}"><button type="button" class="btn btn-outline-success">Назад</button></a>
+        </form>
+    </div>
+</div>
 {% endblock body %}

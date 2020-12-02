@@ -1,8 +1,17 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<form action="" method="post">
-    {% csrf_token %}
-    <label>Название жанра: {{ form.genre_name }}</label><br>
-    <button type="submit">Добавить</button>
-</form>
+<div class="row">
+    <div class="col">
+        <h1>Изменить</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form action="" method="post">
+            {% csrf_token %}
+            <label>Название жанра: {{ form.genre_name }}</label><br>
+            <button type="submit" class="btn btn-success">Добавить</button>
+        </form>
+    </div>
+</div>
 {% endblock body %}

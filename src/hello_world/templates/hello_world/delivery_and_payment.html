@@ -1,0 +1,336 @@
+{% extends 'customer_base.html' %}
+{% block body %}
+
+<div class="container">
+
+<table cellpadding="1" cellspacing="1" style="border-collapse: collapse;"> 
+  <tbody> 
+    <tr><td style="border-image: initial;"> 
+        <h3><span style="color: #111111;"><span style="font-size: 18px;">ОБРАБОТКА ЗАКАЗОВ</span>&nbsp;</span><img width="25" alt="vremia_obrabotki.jpg" src="/upload/medialibrary/4f7/4f706476be17e03d497df941b130dda3.jpg" height="25" title="vremia_obrabotki.jpg" border="0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h3>
+       </td><td style="border-image: initial;"> 
+        <h3><span style="color: #111111;"><span style="font-size: 18px;">СПОСОБЫ ДОСТАВКИ</span>&nbsp;</span><b>&nbsp;</b><img width="25" alt="dostavka.jpg" src="/upload/medialibrary/3c9/3c9dc8f765ccc61fb155b768aa8b54d8.jpg" height="25" title="dostavka.jpg" border="0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h3>
+       </td></tr>
+   
+    <tr><td colspan="1" style="border-image: initial;"></td><td colspan="1" style="border-image: initial;"></td></tr>
+   
+    <tr><td style="border-image: initial;">Дни обработки заказов:</td><td style="border-image: initial;"><a href="#dostavka_kurierom"><span style="color: #464646;">Доставка курьером по городу Минску</span></a></td></tr>
+   
+    <tr><td style="border-image: initial;"> 
+        <table cellpadding="1" cellspacing="1" style="border-collapse: collapse;"> 
+          <tbody> 
+            <tr><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;ПН&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;ВТ&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;СР&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;ЧТ&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;ПТ</span>&nbsp;</span></td><td style="border-image: initial;"><span style="background-color: #f16522;">&nbsp;<span style="color: #ffffff;">СБ</span>&nbsp;</span></td><td style="border-image: initial;"><span style="background-color: #f16522;">&nbsp;<span style="color: #ffffff;">ВС</span>&nbsp;</span> 
+                <br>
+               </td></tr>
+           </tbody>
+         </table>
+       </td><td style="border-image: initial;"><a href="#samovivoz"><span style="color: #464646;">Самовывоз</span></a></td></tr>
+   
+    <tr><td style="border-image: initial;">Время обработки заказов:&nbsp;<span lang="EN-US">c</span>&nbsp;10:00 до 17:30</td><td style="border-image: initial;"><a href="#belpochta"><span style="color: #464646;">Доставка посредством РУП "Белпочта"</span></a><span style="color: #555555;">&nbsp;</span></td></tr>
+   
+    <tr><td colspan="1" style="border-image: initial;"><span style="font-size: 18px;">&nbsp;</span><span style="font-size: 24px;">&nbsp;</span></td><td colspan="1" style="border-image: initial;"></td></tr>
+   
+    <tr><td colspan="1" style="border-image: initial;"> 
+        <h3><span style="font-size: 18px; color: #111111;">ДОСТАВКА ЗАКАЗОВ</span><b>&nbsp;&nbsp;</b><img width="25" alt="vremia_dostavki.jpg" src="/upload/medialibrary/2c0/2c03bbd989023cebb3cb048d05314b50.jpg" height="25" title="vremia_dostavki.jpg" border="0"></h3>
+       </td><td colspan="1" style="border-image: initial;"> 
+        <h3><span style="color: #111111;"><span style="font-size: 18px;">СПОСОБЫ ОПЛАТЫ</span>&nbsp;</span><b>&nbsp;</b><img width="25" alt="oplata.jpg" src="/upload/medialibrary/129/1290e546a03564fbf1bdc0203a29260c.jpg" height="24" title="oplata.jpg" border="0"></h3>
+       </td></tr>
+   
+    <tr><td colspan="1" style="border-image: initial;"></td><td colspan="1" style="border-image: initial;"></td></tr>
+   
+    <tr><td colspan="1" style="border-image: initial;">Дни доставки заказов:</td><td colspan="1" style="border-image: initial;"><a href="#pochtozii_perevod"><span style="color: #464646;">Почтовый перевод</span></a></td></tr>
+   
+    <tr><td colspan="1" style="border-image: initial;"> 
+        <table cellpadding="1" cellspacing="1" style="border-collapse: collapse;"> 
+          <tbody> 
+            <tr><td style="border-image: initial;"><span style="background-color: #8fc63d;">&nbsp;<span style="color: #111111;">ПН&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;ВТ&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;СР&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;ЧТ&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #8fc63d;"><span style="color: #111111;">&nbsp;ПТ</span>&nbsp;</span></td><td style="border-image: initial;"><span style="background-color: #f16522;">&nbsp;<span style="color: #ffffff;">СБ&nbsp;</span></span></td><td style="border-image: initial;"><span style="background-color: #f16522;"><span style="color: #ffffff;">&nbsp;ВС</span>&nbsp;</span> 
+                <br>
+               </td></tr>
+           </tbody>
+         </table>
+       </td><td colspan="1" style="border-image: initial;"><a href="#oplata_cherez_bank"><span style="color: #464646;">Банковский перевод</span></a></td></tr>
+   
+    <tr><td colspan="1" style="border-image: initial;">Время доставки&nbsp;<span lang="EN-US">c</span>&nbsp;10:00 до 20:00</td><td colspan="1" style="border-image: initial;"><a href="#erip"><span style="color: #464646;">Система "Расчет" (ЕРИП)</span></a></td></tr>
+   </tbody>
+ </table>
+ <hr> 
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+ 
+<h2> 
+<a name="dostavka_kurierom"></a>
+ <b>Доставка курьером по городу Минску&nbsp;</b><img width="25" alt="delivery_carrier.jpg" src="/upload/medialibrary/4e9/4e91213618e52ee65f46811c769e553a.jpg" height="25" title="delivery_carrier.jpg" border="0"></h2>
+ 
+<div><u><b> 
+      <br>
+     </b></u></div>
+ 
+<p>Доставка товаров курьером осуществляется по г.Минску в пределах от МКАД с понедельника по пятницу, кроме праздничных дней. В субботу, воскресенье и праздничные дни заказы по телефонам не принимаются и доставка не производится. 
+  <br>
+ <span>&nbsp; 
+    <br>
+   </span>После того, как Вы сделали заказ и наш менеджер связался с Вами для уточнения времени и адреса доставки, наш курьер доставит Вам товар по указанному адресу. 
+  <br>
+ При сумме заказа менее 50,00 рублей, стоимость доставки составит 5,00 рублей. При сумме заказе <b>от 50,00 рублей и выше - доставка курьером осуществляется бесплатно</b>.</p>
+ 
+<p> Заказы по г.Минску доставляются, как правило, в течение 48 часов, кроме выходных и праздничных дней. &nbsp;&nbsp;</p>
+ 
+<p>Обязательно укажите точный адрес доставки и контактный номер телефона при оформлении покупки. 
+  <br>
+ Перед тем, как доставить заказ, курьер обязательно позвонит Вам для уточнения времени доставки. 
+  <br>
+ </p>
+ 
+<p> </p>
+ 
+<h3> 
+<a name="samovivoz"></a>
+ <b>Самовывоз&nbsp;</b><img width="25" alt="Osobny_odber.jpg" src="/upload/medialibrary/af7/af76422da960b1a223d93c328a6bd90d.jpg" height="25" title="Osobny_odber.jpg" border="0"></h3>
+ 
+<div><u><b> 
+      <br>
+     </b></u></div>
+ Если Вы хотите забрать свой заказ самостоятельно, то это можно сделать на нашем центральном складе или в одном из пунктов получения заказов. 
+<br>
+ Для этого, необходимо предварительно связаться с нами по телефону:&nbsp;<span style="color: #0076a4;">+375 (29) 125-21-21</span>&nbsp;или&nbsp;<span style="color: #0076a4;">+375 (29)&nbsp;</span><span style="color: #0076a4;">826-21-21</span> либо прислать письмо на наш e-mail <span style="color: #0076a4;">rto21@tut.by</span> 
+<p></p>
+ 
+<p> в котором сообщить администратору магазина место, где бы Вы хотели забрать свой заказ. 
+  <br>
+ После того как Ваш заказ будет собран менеджер свяжется с Вами по телефону или отправит письмо на Ваш e-mail и сообщит Вам о готовности заказа. 
+  <br>
+ При самовывозе - если Вы не забрали свой заказ в течение 3 трех банковских дней, Ваш заказ аннулируется. 
+  <br>
+ <span>&nbsp; 
+    <br>
+   </span>Адреса и время работы центрального склада и пунктов выдачи заказов можно посмотреть здесь <a href="http://rto21.by/content/contacts/">«контакты»</a><span style="color: #0076a4;"> 
+    <br>
+   </span> </p>
+ 
+<p> </p>
+ 
+<h3> <a name="belpochta"></a> <b>Доставка посредством РУП «Белпочта»&nbsp;</b><img width="25" alt="posilka.jpg" src="/upload/medialibrary/73f/73fa7d08a735b54aa2d858a78a8f09aa.jpg" height="25" title="posilka.jpg" border="0"></h3>
+ 
+<div> 
+  <br>
+ </div>
+ Доставка во все города Республики Беларусь осуществляется почтовым отправлением посредством услуги РУП «Белпочта». 
+<p></p>
+ 
+<div>Стоимость почтовой доставки будет добавлена в счет, который придёт Вам после обработки заказа. 
+  <br>
+ Это значит, что после получения электронного письма о готовности заказа, Вы переводите на наш расчетный&nbsp;счет сумму, равную сумме заказа + стоимость доставки, все необходимые для оплаты реквизиты Вы найдете в электронном письме.</div>
+ 
+<div> 
+  <br>
+ </div>
+ 
+<div> 
+  <br>
+ </div>
+ 
+<table cellpadding="1" cellspacing="1" style="border-collapse: collapse;"> 
+  <tbody> 
+    <tr><td style="border-image: initial;"><img width="70" alt="vosklitsatelnii_znak.jpg" src="/upload/medialibrary/266/2660ffdf9c18a0aae47ded99fac2870f.jpg" height="70" title="vosklitsatelnii_znak.jpg" border="0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td><td style="text-align: justify; border-image: initial;"><blockquote style="margin: 0px 0px 0px 40px; border: none; padding: 0px;"></blockquote><b style="color: #ee1d24;">Пожалуйста, не осуществляйте предоплату на наш расчетный счет 
+          <br>
+         самостоятельно&nbsp;</b> <b style="color: #ee1d24;">до получения&nbsp;</b><b style="color: #ee1d24;">от администратора магазина</b><b style="color: #ee1d24;">&nbsp;электронного 
+          <br>
+         письма,</b>&nbsp;<b style="color: #ee1d24;">в котором будет содержаться информация о сумме заказа, стоимости&nbsp;</b> 
+        <br>
+       <b style="color: #ee1d24;"> доставки, а также все необходимые для оплаты реквизиты.</b><span style="color: #ee1d24;">&nbsp;</span></td></tr>
+   </tbody>
+ </table>
+ 
+<div> 
+  <br>
+ </div>
+ 
+<div>&nbsp; 
+  <br>
+ При оформлении заказа и выборе почтовой доставки, указывайте Ф.И.О., полный адрес, не забывайте про индекс и область. Доставка заказов по Беларуси осуществляется в течение 2-3 дней. 
+  <p> </p>
+ 
+  <p class="MsoNormal">Об отправке Вашего заказа мы обязательно сообщаем на Ваш e-mail идентификационный номер Вашего отправления, и Вы сами сможете отслеживать заказ на сайте&nbsp;<a href="http://search.belpost.by/">РУП «Белпочта».</a></p>
+ Срок обработки заказа 24 часа. Если в течение 24 часов с Вами не связался администратор магазина, пожалуйста, повторите заказ, либо перезвоните по телефону&nbsp;<span style="color: #0076a4;">+375 (29) 125-21-21</span>&nbsp;или&nbsp;<span style="color: #0076a4;">+375 (29)&nbsp;</span><span style="color: #0076a4;">826-21-21</span> 
+  <br>
+ Мы не оставляем ни один заказ без внимания, возможно, по каким-то техническим причинам Ваш заказ не дошёл. 
+  <br>
+ Пожалуйста, внимательно заполняйте Ваш номер телефона, адрес доставки и e-mail.<hr></div>
+ 
+<div><b><span style="color: #0076a4;"> 
+      <br>
+     </span></b></div>
+ 
+<div> 
+  <h1><span style="color: #626262;">СПОСОБЫ ОПЛАТЫ:</span> </h1>
+ Для оплаты товаров в нашем интернет-магазине мы предлагаем несколько видов оплаты: 
+  <br>
+ &nbsp;&nbsp; 
+  <h3></h3>
+ 
+  <h3 style="margin: 0px; line-height: 1.1; padding: 5px 0px;"><a name="pochtozii_perevod"></a> 
+<a name="pochtovii_perevod"></a>
+ <b>Почтовый перевод&nbsp;</b><img width="25" alt="pochtovii_perevod.jpg" src="/upload/medialibrary/7da/7daf2ec5072c660227e1f5982062d6d3.jpg" height="17" title="pochtovii_perevod.jpg" border="0"></h3>
+ 
+  <div><u><b> 
+        <br>
+       </b></u></div>
+ 
+  <p>Оплату заказа можно произвести через любое почтовое отделение либо электронным почтовым переводом на наш расчётный счёт. Электронный почтовый перевод «БелПочта» производит в течении 48 часов.&nbsp;</p>
+ 
+  <h3><u><b> 
+        <br>
+       </b></u></h3>
+ 
+  <h3> 
+<a name="oplata_cherez_bank"></a>
+ <b>Оплата через банк&nbsp;</b><img width="25" alt="erip.jpg" src="/upload/medialibrary/0d2/0d24df145a4613397e2d767023ab90c9.jpg" height="25" title="erip.jpg" border="0"></h3>
+ 
+  <div><u><b> 
+        <br>
+       </b></u></div>
+ Оплату можно произвести в отделении любого банка на наш р/счёт. 
+  <br>
+ В этом случае идете в любое отделение банка и оплачиваете заказ.&nbsp; 
+  <br>
+ Если Вы пользуетесь услугой "интернет-банкинк", 
+  <br>
+ Вы можете произвести оплату самостоятельно на указанный р/счёт. 
+  <br>
+ <span>&nbsp; <span style="color: #0076a4;"> 
+      <br>
+     </span></span>Общество с ограниченной ответственностью «РТО-21» 
+  <br>
+ 220026, Республика Беларусь, г.Минск пер.Бехтерева, д.8, офис 115 
+  <br>
+ р/с&nbsp;<span style="font-family: &quot;Times New Roman&quot;, serif;"><b>BY44 MTBK 3012 0001 0933 0006 6985</b></span>&nbsp;</div>
+ 
+<div>в ЗАО "МТБанк" г.Минск, ул.Короля, 51, 2 этаж, BIC MTBKBY22 &nbsp; &nbsp; 
+  <br>
+ УНП 192121444 
+  <br>
+ <b> Назначение платежа: За товары для рукоделия по счету &lt;номер счета&gt;.&nbsp;</b><span style="color: #0076a4;"> 
+    <br>
+   </span><span> 
+    <br>
+   </span>Можете распечатать квитанцию для оплаты прямо у нас на сайте&nbsp;<a href="http://rto21.by/upload/doc/Квитанция на оплату.doc">КВИТАНЦИЯ</a>&nbsp;</div>
+ 
+<div> 
+  <br>
+ </div>
+ 
+<h3> <a name="erip"></a> 
+<a name="erip"></a>
+ <b>Система "Расчет" (ЕРИП)</b><span style="font-size: 24px; color: #363636;">&nbsp;</span><img width="25" alt="bankovskii_perevod.jpg" src="/upload/medialibrary/ab0/ab00c623fa743da8349d3ee640f9d328.jpg" height="25" title="bankovskii_perevod.jpg" border="0"></h3>
+ 
+<p> 
+  <br>
+ </p>
+ 
+<p>Оплатить товары интернет-магазина&nbsp;<a href="http://rto21.by/" class="daria-goto-anchor" target="_blank" rel="noopener noreferrer" style="color: #990099;">rto21.by</a>&nbsp;Вы можете через систему ”Расчет“ (ЕРИП), в любом удобном для Вас месте, в удобное для Вас время, в удобном для Вас пункте банковского обслуживания – интернет-банке, с помощью мобильного банкинга, инфокиоске, кассе банков, банкомате и т.д.</p>
+ 
+<div> 
+  <div>Совершить оплату можно с использованием наличных денежных средств, электронных денег и банковских платежных карточек в пунктах банковского обслуживания &nbsp;банков, которые оказывают услуги по приему платежей, а также посредством инструментов дистанционного банковского обслуживания.</div>
+ 
+  <div> 
+    <br>
+   </div>
+ 
+  <div><b>ДЛЯ ПРОВЕДЕНИЯ ПЛАТЕЖА НЕОБХОДИМО:</b></div>
+ 
+  <div> 
+    <br>
+   </div>
+ 
+  <div><span style="white-space: pre;">	</span>1. Выбрать последовательно пункты:</div>
+ 
+  <div>&nbsp; &nbsp;<span style="white-space: pre;">	</span>&nbsp;&nbsp;- Система "Расчет" (ЕРИП)</div>
+ 
+  <div>&nbsp; &nbsp;&nbsp;<span style="white-space: pre;">	</span>&nbsp;&nbsp; - Интернет-магазины/сервисы</div>
+ 
+  <div>&nbsp; &nbsp; &nbsp;<span style="white-space: pre;">	</span>&nbsp;&nbsp; &nbsp;- R</div>
+ 
+  <div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-&nbsp;<a href="http://rto21.by/" class="daria-goto-anchor" target="_blank" rel="noopener noreferrer" style="color: #990099;">rto21.by</a>&nbsp;</div>
+ 
+  <div><span style="white-space: pre;">	</span>2. Для оплаты "Товара" ввести Номер счета.</div>
+ 
+  <div><span style="white-space: pre;">	</span>3. Ввести сумму платежа (если не указана).</div>
+ 
+  <div><span style="white-space: pre;">	</span>4. Проверить корректность информации</div>
+ 
+  <div><span style="white-space: pre;">	</span>5. Совершить платеж.</div>
+ 
+  <div> 
+    <br>
+   </div>
+ 
+  <div>Если Вы осуществляете платеж в кассе банка, пожалуйста, сообщите кассиру о необходимости проведения платежа через систему ”Расчет“ (ЕРИП).</div>
+ 
+  <div> 
+    <br>
+   </div>
+ 
+  <div>Техническое взаимодействие с системой "Расчет" (ЕРИП) осуществляется с помощью сервиса «Экспресс Платежи» (<a href="https://express-pay.by/" class="daria-goto-anchor" target="_blank" rel="noopener noreferrer" style="color: #990099;">https://express-pay.by/</a>).</div>
+ &nbsp;<hr></div>
+ 
+<br>
+ 
+<table cellpadding="1" cellspacing="1" style="border-collapse: collapse;"> 
+  <tbody> 
+    <tr><td style="border-image: initial;"><img width="75" alt="zelenii_vosklitsatelnii_znak.png" src="/upload/medialibrary/64a/64a17f22e6de4ccb874e9ebb8c830efb.png" height="75" title="zelenii_vosklitsatelnii_znak.png" border="0"></td><td style="border-image: initial;"><blockquote style="margin: 0px 0px 0px 40px; border: none; padding: 0px;"><b>Пожалуйста, подтвердите факт оплаты 
+            <br>
+           </b><b>заказа на e-mail: rto21@tut.by,&nbsp; 
+            <br>
+           </b><b> указав в письме информацию о дате оплаты, 
+            <br>
+           </b><b> ФИО и сумме или по телефонам!</b></blockquote></td><td style="border-image: initial;"> <blockquote style="margin: 0px 0px 0px 40px; border: none; padding: 0px;"> 
+          <table cellpadding="1" cellspacing="1" style="border-collapse: collapse;"> 
+            <tbody> 
+              <tr><td style="border-image: initial;"><img width="20" alt="vel.jpg" src="/upload/medialibrary/ba0/ba016aed7a6a59b605cea066ef22948d.jpg" height="20" title="vel.jpg" border="0"></td><td style="border-image: initial;"> 
+                  <br>
+                 </td><td style="border-image: initial;"><span style="font-size: 18px;">+375 29&nbsp;125-21-21</span></td></tr>
+             
+              <tr><td style="border-image: initial;"><span style="font-size: 18px;"><img width="20" alt="mtc.jpg" src="/upload/medialibrary/5f2/5f20c82ec110039da69356dd1753a617.jpg" height="20" title="mtc.jpg" border="0"></span></td><td style="border-image: initial;"> <span style="font-size: 18px;"> 
+                    <br>
+                   </span></td><td style="border-image: initial;"><span style="font-size: 18px;">+375 29&nbsp;826-21-21</span></td></tr>
+             
+              <tr><td style="border-image: initial;"><span style="font-size: 18px;"><img width="20" alt="tel.jpg" src="/upload/medialibrary/6f5/6f5eec557a5cdbe1765646e0ed45ef9a.jpg" height="20" title="tel.jpg" border="0"></span></td><td style="border-image: initial;"> <span style="font-size: 18px;"> 
+                    <br>
+                   </span></td><td style="border-image: initial;"><span style="font-size: 18px;">+375 17&nbsp;345-94-88</span></td></tr>
+             </tbody>
+           </table>
+         </blockquote> </td></tr>
+   </tbody>
+ </table>
+ 
+<div> 
+  <br>
+ </div>
+ 
+<div><span style="color: #0076a4;"> 
+    <br>
+   </span> 
+  <br>
+ 
+  <p></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p class="MsoNormal"></p>
+ 
+  <p> </p>
+</div>
+ </div>
+ {% endblock body %}

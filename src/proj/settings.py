@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'orders',
     'user_profile',
     'manager_admin',
+    'comments',
 
     'crispy_forms',
 ]
@@ -129,3 +130,6 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = '/profile/'
+LOGOUT_REDIRECT_URL = '/'

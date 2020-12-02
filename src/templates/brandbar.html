@@ -35,7 +35,7 @@
                         {% else %}
                           <div class="up-item" style="display: inline-block; font-size: 14px; margin-right: 29px;">
                               <i class="fas fa-user" style="font-size: 22px;"></i>
-                              <a href="" style="font-size: 14px; color: #000;">Sign In</a>
+                              <a href="{% url 'login:login' %}" style="font-size: 14px; color: #000;">Sign In</a>
                               or
                               <a href="{% url 'registration:registration' %}" style="font-size: 14px; color: #000;">Create account</a>
                           </div>
@@ -73,17 +73,28 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" style="color: #ffffff;">Доставка и оплата</a>
+                <a class="nav-link" href="{% url 'hello_world:delivery' %}" style="color: #ffffff;">Доставка и оплата</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#" style="color: #ffffff;">Контакты</a>
               </li>
             </ul>
+            {% if user.is_staff or user.is_superuser %}
             <ul class="navbar-nav ml-auto" style="color: #ffffff;">
               <li class="nav-item">
-                Курс BYN/USD: {{ rate }}
+                <a class="navbar-brand" href="{% url 'manager_admin:dashboard' %}">
+                <button class="btn btn-secondary">Администрирование</button>
+              </a>
               </li>
             </ul>
+              {% endif %}
+            {% if rate %}
+            <ul class="navbar-nav ml-auto" style="color: #ffffff;">
+              <li class="nav-item">
+              <a class="nav-link" href="https://www.nbrb.by/statistics/rates/ratesdaily.asp" style="color: #ffffff;">Курс BYN/USD: {{ rate }}</a>
+              </li>
+            </ul>
+            {% endif %}
           </div>
         </div>
       </nav>

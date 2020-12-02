@@ -1,7 +1,20 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<h1>Возрастное ограничение</h1>
-<h2>Тип - {{ object.age_restrictions }}</h2>
-<a href={% url 'age_restriction_update' object.pk %}><button>Редактировать ограничение</button></a>
-<a href={% url 'age_restriction_delete' object.pk %}><button>Удалить ограничение</button></a>
+<div class="row">
+    <div class="col">
+        <h1>Возрастное ограничение</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2> Тип - {{ object.age_restrictions }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+    <a href={% url 'age_restriction_update' object.pk %}><button class="btn btn-success">Редактировать ограничение</button></a>
+    <a href={% url 'age_restriction_delete' object.pk %}><button class="btn btn-danger">Удалить ограничение</button></a>
+</div> 
+</div>
+
 {% endblock body %}

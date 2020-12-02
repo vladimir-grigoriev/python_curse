@@ -2,7 +2,7 @@
 {% block body %}
 
     <h1>Серии</h1>
-
+    <a href="{% url 'create_series' %}"><button class="btn btn-success"><i class="fas fa-plus-circle"></i> Добавить серию</button></a>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -14,7 +14,7 @@
         <tbody>
             {% for obj in series %}
           <tr>
-            <th scope="row">{{ publisher.pk }}</th>
+            <th scope="row">{{ obj.pk }}</th>
             <td>{{ obj.series_name }}</td>
             <td>
                 <a href="{% url 'series_detailed_info' obj.pk %}"><button class="btn btn-success"><i class="fas fa-info-circle"></i></button></a>

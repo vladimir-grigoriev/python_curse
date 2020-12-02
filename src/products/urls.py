@@ -3,11 +3,13 @@ from .views import (ProductsListView,
                     ProductCreateView, 
                     ProductDetailView, 
                     ProductUpdateView,
-                    ProductDeleteView) 
+                    ProductDeleteView,
+                    ProductsAdminListView) 
 
 app_name = 'products'
 urlpatterns = [
     path('', ProductsListView.as_view(), name='all_products_list'),
+    path('admin/', ProductsAdminListView.as_view(), name='products'),
     path('create/', ProductCreateView.as_view(), name='create_new_product'),
     path('<int:pk>', ProductDetailView.as_view(), name='product_detailed'),
     path('<int:pk>/update', ProductUpdateView.as_view(), name='product_update'),

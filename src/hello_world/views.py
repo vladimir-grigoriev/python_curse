@@ -30,3 +30,5 @@ class HomepageView(TemplateView):
         return context
 
 
+class DeliveryTemplateView(TemplateView):
+    template_name = "hello_world/delivery_and_payment.html"

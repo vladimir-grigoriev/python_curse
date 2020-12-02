@@ -13,10 +13,10 @@
         <a style="margin-top: 2em;" href="{% url 'user_profile:profile' %}" class="list-group-item">Профиль</a>
         <a href="{% url 'user_profile:history' %}" class="list-group-item">История заказов</a>
         <a href="#" class="list-group-item">Купоны</a>
-        <a href="#" class="list-group-item">Выйти</a>
+        <a href="{% url 'login:logout' %}" class="list-group-item">Выйти</a>
       </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9" style='min-height:65vh'>
       {% block inner %}
       <h1 class="my-4">Профиль пользователя {{ user.username }}</h1>
       <table class="table table-bordered">
@@ -40,6 +40,9 @@
           <tr>
             <th scope="row">Фамилия</th>
             <td>{{ object.last_name }}</td>
+          </tr>
+          <tr>
+            <th colspan="2" scope="row">Детальная информация</th>
           </tr>
           <tr>
             <th scope="row">Телефон</th>
@@ -67,7 +70,8 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-danger">Редактировать</button>
+      <a href="{% url 'user_profile:edit' %}"><button class="btn btn-danger">Редактировать</button></a>
+      
       {% endblock inner %}
     </div>  
   </div>

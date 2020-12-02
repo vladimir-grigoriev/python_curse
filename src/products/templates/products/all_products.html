@@ -2,17 +2,21 @@
 {% block body %}
 <div class="container">
 <div class="row">
-  <h1 class="display-5" style="margin: 20px 0px">
+  <div class="col">
+   <h1 class="display-5" style="margin: 20px 0px">
     Книги {% if genre_name %}в жанре "{{ genre_name }}"{% endif %}
           {% if searching_value %} по запросу "{{ searching_value }}"{% endif %}
-  </h1>
+  </h1> 
+  </div>
+  
 </div>
-  {% if object_list %}
+{% if object_list %}
   <div class="row">
     {% for book in object_list %}
-    <div class="col-12 col-sm-6 col-md-3">
+    <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+    <div class="card-group">
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ book.foto.url }}" alt="Card image cap">
+        <img class="card-img-top" src="{{ book.foto.url }}" alt="Card image cap" style="width: 100%; height: 25rem; object-fit: contain">
         <div class="card-body">
           <div class="text-truncate">
             <h5 class="card-title">
@@ -21,11 +25,13 @@
               </a>
             </h5>
           </div>
-          <p class="card-text" style="text-overflow: ellipsis;">
-            <small>
-              {{ book.author.all|join:", " }}, {{ book.year_published }} 
-            </small>
-          </p>
+          <div class="truncate">
+            <p class="card-text" style="text-overflow: ellipsis;">
+              <small>
+                {{ book.author.all|join:", " }}, {{ book.year_published }} 
+              </small>
+            </p>
+          </div>
           <p>
             {% if book.rating > 8 %}
             <small>
@@ -60,11 +66,12 @@
             {% endif %}
           </p>
           <div class="row">
-            <div class="col-6"><strong>{{ book.price }}</strong> руб.</div>
-            <div class="col-6"><a href="{% url 'orders:cart' %}?book={{ book.pk }}" class="btn btn-primary">В корзину</a></div>
+            <div class="col-5"><p class="h5"><strong>{{ book.price }}</strong><small> руб.</small></p></div>
+            <div class="col-7"><a href="{% url 'orders:cart' %}?book={{ book.pk }}" class="btn btn-outline-primary btn-lg btn-block"><i class="fas fa-shopping-cart"></i> В корзину</a></div>
           </div>
         </div>
       </div>
+    </div>
     </div>
     {% endfor %}
   </div>

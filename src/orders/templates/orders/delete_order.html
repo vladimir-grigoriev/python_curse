@@ -1,0 +1,10 @@
+{% extends 'user_profile/profile.html' %}
+
+{% block inner %}
+Отменить заказ № {{ object.pk }}?
+<form action="" method="post">
+    {% csrf_token %}
+    <a href="{% url 'user_profile:profile' %}"><button type="submit" class="btn btn-danger" name="button" value="delete">Да</button></a>
+    <a href="{% url 'user_profile:profile' %}" class="btn btn-outline-success">Назад</button></a>
+</form>
+{% endblock inner %}

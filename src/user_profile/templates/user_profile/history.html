@@ -18,9 +18,9 @@
       <th scope="row">{{ order.pk }}</th>
       <td>{{ order.create_date }}</td>
       <td>{{ order.cart.total_price }}</td>
-      <td>Исполнен</td>
+      <td>{{ order.get_status_display }}</td>
       <td>
-        <a href="{% url 'user_profile:detailed_order' %}" class="btn btn-link">
+        <a href="{% url 'user_profile:detailed_order' %}?order={{ order.pk }}" class="btn btn-link">
           <input type="hidden" name="order" value="{{ order.pk }}">
           <i class="fas fa-info-circle"></i>
         </a>

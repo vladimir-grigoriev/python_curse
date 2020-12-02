@@ -1,7 +1,19 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<h1>Карточка автора</h1>
-<h2>ФИО - {{ author.author_name }}</h2>
-<a href={% url 'author_update' author.pk %}><button>Редактировать автора</button></a>
-<a href={% url 'author_delete' author.pk %}><button>Удалить автора</button></a>
+<div class="row">
+    <div class="col">
+        <h1>Карточка автора</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2>ФИО - {{ author.author_name }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href={% url 'author_update' author.pk %}><button class="btn btn-success">Редактировать автора</button></a>
+        <a href={% url 'author_delete' author.pk %}><button class="btn btn-danger">Удалить автора</button></a>
+    </div>
+</div>
 {% endblock body %}

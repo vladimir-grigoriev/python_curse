@@ -2,6 +2,10 @@
 {% block body %}
 <h1>Список книг</h1>
 
+<form action="{% url 'products:create_new_product' %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-success" style="margin-bottom:5px">Добавить книгу</button>
+</form>
 <table class="table table-sm table-hover">
     <thead>
         <tr>
@@ -15,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for book in books %}
+        {% for book in object_list %}
         <tr>
             <th scope="row">{{ book.pk }}</th>
             <td>{{ book.name }}</td>
@@ -48,8 +52,19 @@
         {% endfor %}
     </tbody>
 </table>
-<form action="{% url 'products:create_new_product' %}" method="post">
-    {% csrf_token %}
-    <button class="btn btn-danger btn-block">Добавить книгу</button>
-</form>
+<nav aria-label="Page navigation example" style="text-align: center; margin-top: 2em; font-size: large;">
+    <ul class="pagination" style="justify-content: center;">
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+      {% endif %}
+    </ul>
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+  </nav>
 {% endblock body %}

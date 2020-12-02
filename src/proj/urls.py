@@ -13,7 +13,8 @@ urlpatterns = [
     path('registration/', include('registration.urls', namespace='registration')),
     path('login/', include('login.urls', namespace='login')),
     path('cart/', include('orders.urls', namespace='orders')),
-    path('profile/', include('user_profile.urls', namespace='user_profile'))
+    path('profile/', include('user_profile.urls', namespace='user_profile')),
+    path('comments/', include('comments.urls', namespace='comments'))
 ]
 
 if settings.DEBUG:

@@ -1,7 +1,19 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<h1>Тип переплёта</h1>
-<h2>Наименование - {{ binding.binding_type }}</h2>
-<a href={% url 'binding_update' binding.pk %}><button>Редактировать тип переплёта</button></a>
-<a href={% url 'binding_delete' binding.pk %}><button>Удалить тип переплёта</button></a>
+<div class="row">
+    <div class="col">
+        <h1>Тип переплёта</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2>Наименование - {{ binding.binding_type }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href={% url 'binding_update' binding.pk %}><button class="btn btn-success">Редактировать тип переплёта</button></a>
+        <a href={% url 'binding_delete' binding.pk %}><button class="btn btn-danger">Удалить тип переплёта</button></a>
+    </div>
+</div>
 {% endblock body %}

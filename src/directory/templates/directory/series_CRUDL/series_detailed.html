@@ -1,9 +1,29 @@
 {% extends 'manager_base.html' %}
 {% block body %}
-<h1>Карточка Серии</h1>
-<h2>Серия - {{ series.series_name }}</h2>
-<h2>Автор - {{ series.author.author_name }}</h2>
-<h2>Книги этой серии - {% for book in series.books.all %}book.name{% endfor %}</h2>
-<a href={% url 'series_update' series.pk %}><button>Редактировать серию</button></a>
-<a href="/directories/series/{{ series.pk }}/delete"><button>Удалить серию</button></a>
+<div class="row">
+    <div class="col">
+        <h1>Карточка Серии</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2>Серия - {{ series.series_name }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2>Автор - {{ series.author.all }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2>Книги этой серии - {{ series.books.all|join:", " }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href={% url 'series_update' series.pk %}><button class="btn btn-success">Редактировать серию</button></a>
+        <a href="/directories/series/{{ series.pk }}/delete"><button class="btn btn-danger">Удалить серию</button></a>
+    </div>
+</div>
 {% endblock body %}

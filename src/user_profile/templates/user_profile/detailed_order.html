@@ -1,5 +1,44 @@
 {% extends 'user_profile/profile.html' %}
 
 {% block inner %}
-{{ order }}
+<h1>Заказ №{{ order.pk }}</h1>
+<table class="table table-sm table-hover">
+    <thead >
+      <tr class="table-active table-bordered">
+        <!-- <th scope="col"></th> -->
+        <th scope="col">Дата создания</th>
+        <th scope="col">Заказ</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Телефон</th>
+        <!-- <th scope="col">Email</th> -->
+        <th scope="col">Сумма</th>
+        <th scope="col">Товар</th>
+        <th scope="col">Комментарий</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        {{ order.create_date.date }}<br>
+        {{ order.create_date.time }}
+      </td>
+      <th scope="row">№ {{ order.pk }}</th>
+        <td>{{ order.get_status_display }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.cart.total_price }}</td>
+        <td>
+          {% for book in order.cart.books.all %}
+          {{ book.book.pk }} "{{ book.book.name }}"<br>
+          {% endfor %}
+        </td>
+        <td>{{ order.comment }}</td>
+        <td>
+          <a href="{% url 'orders:delete' order.pk %}" class="btn btn-link" style="color: red;">
+            <i class="fas fa-times-circle"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 {% endblock inner %}

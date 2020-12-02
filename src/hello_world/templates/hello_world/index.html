@@ -36,61 +36,66 @@
  <!-- Карточки товаров -->
   <div class="row">
     {% for book in last_books %}
-      <div class="col-sm-6 col-md-4">
-        <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ book.foto.url }}" alt="Card image cap">
-        <div class="card-body">
-          <div class="text-truncate">
-            <h5 class="card-title">
-              <a href="{% url 'products:product_detailed' book.pk %}">
-                <strong>{{ book.name }}</strong>
-              </a>
-            </h5>
-          </div>
-          <p class="card-text" style="text-overflow: ellipsis;">
-            <small>
-              {{ book.author.all|join:", " }}, {{ book.year_published }} 
-            </small>
-          </p>
-          <p>
-            {% if book.rating > 8 %}
-            <small>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-            </small>
-            {% elif book.rating > 6 %}
-            <small>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-            </small>
-            {% elif book.rating > 4 %}
-            <small>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-            </small>
-            {% elif book.rating > 2 %}
-            <small>
-              <i class="fas fa-star" style="color: gold;"></i>
-              <i class="fas fa-star" style="color: gold;"></i>
-            </small>
-            {% else %}
-            <small>
-              <i class="fas fa-star" style="color: gold;"></i>
-            </small>
-            {% endif %}
-          </p>
-          <div class="row">
-            <div class="col-6"><strong>{{ book.price }}</strong> руб.</div>
-            <div class="col-6"><a href="{% url 'orders:cart' %}?book={{ book.pk }}" class="btn btn-primary">В корзину</a></div>
-          </div>
+      <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+        <div class="card-group">
+          <div class="card">
+            <img class="card-img-top" src="{{ book.foto.url }}" alt="Card image cap" style="width: 100%; height: 25rem; object-fit: contain;">
+            <div class="card-body">
+              <div class="text-truncate">
+                <h5 class="card-title">
+                  <a href="{% url 'products:product_detailed' book.pk %}">
+                    <strong>{{ book.name }}</strong>
+                  </a>
+                </h5>
+              </div>
+              <div class="text-truncate">
+                <p class="card-text" style="text-overflow: ellipsis;">
+                  <small>
+                    {{ book.author.all|join:", " }}, {{ book.year_published }} 
+                  </small>
+                </p>
+              </div>
+              <p>
+                {% if book.rating > 8 %}
+                <small>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                </small>
+                {% elif book.rating > 6 %}
+                <small>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                </small>
+                {% elif book.rating > 4 %}
+                <small>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                </small>
+                {% elif book.rating > 2 %}
+                <small>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                </small>
+                {% else %}
+                <small>
+                  <i class="fas fa-star" style="color: gold;"></i>
+                </small>
+                {% endif %}
+              </p>
+              <div class="row">
+                <div class="col-5"><p class="h5"><strong>{{ book.price }}</strong><small> руб.</small></p></div>
+                <div class="col-7"><a href="{% url 'orders:cart' %}?book={{ book.pk }}" class="btn btn-outline-primary btn-block btn-lg"><i class="fas fa-shopping-cart"></i> В корзину</a></div>
+              </div>
+            </div>
+          </div>  
         </div>
-      </div>  
+        
       </div>
     {% endfor %}
   </div>
@@ -100,7 +105,7 @@
 
 <!-- Заголовок блока -->
 <div class="container">
-  <div class="row">
+  <div class="row-flex">
     <div class="col">
       <div class="jumbotron jumbotron-fluid" style="background-color:initial">
         <div class="container">
@@ -112,9 +117,10 @@
   <!-- Карточки товаров -->
   <div class="row">
     {% for book in most_popular %}
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ book.foto.url }}" alt="Card image cap">
+    <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+      <div class="card-group">
+        <div class="card">
+        <img class="card-img-fluid" src="{{ book.foto.url }}" alt="Card image cap" style="width: 100%; height: 25rem; object-fit: contain">
         <div class="card-body">
           <div class="text-truncate">
             <h5 class="card-title">
@@ -162,11 +168,13 @@
             {% endif %}
           </p>
           <div class="row">
-            <div class="col-6"><strong>{{ book.price }}</strong> руб.</div>
-            <div class="col-6"><a href="{% url 'orders:cart' %}?book={{ book.pk }}" class="btn btn-primary">В корзину</a></div>
+            <div class="col-5"><p class="h5"><strong>{{ book.price }}</strong><small> руб.</small></p></div>
+            <div class="col-7"><a href="{% url 'orders:cart' %}?book={{ book.pk }}" class="btn btn-outline-primary btn-block btn-lg"><i class="fas fa-shopping-cart"></i> В корзину</a></div>
           </div>
         </div>
       </div>
+      </div>
+      
     </div>
     {% endfor %}
   </div>
