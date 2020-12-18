@@ -6,11 +6,8 @@ from django.db.models import Q
 from .forms import BookForm
 from .models import Book
 from directory.models import Genre
-from django.views.generic import (ListView, 
-                                  CreateView, 
-                                  DetailView, 
-                                  UpdateView, 
-                                  DeleteView)
+from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import UpdateView, DeleteView
 
 
 class ProductsListView(ListView):
@@ -78,7 +75,6 @@ class ProductDetailView(DetailView):
         context['genres'] = Genre.objects.all()
         return context
     
-
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Book

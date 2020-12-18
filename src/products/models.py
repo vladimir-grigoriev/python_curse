@@ -1,8 +1,14 @@
 import datetime
 
 from django.db import models
-from directory.models import Author, Genre, Series, Publisher, Binding, BookFormat, AgeRestriction
-from django.core.validators import MinValueValidator, MinLengthValidator, MaxValueValidator
+from directory.models import Author, Genre, Series, Publisher, Binding 
+from directory.models import BookFormat, AgeRestriction
+from django.core.validators import MinValueValidator, MinLengthValidator 
+from django.core.validators import MaxValueValidator
+
+
+def upload(inst, filename):
+    return f'books/{inst.pk}-{filename}'
 
 class Book(models.Model):
     name = models.CharField(
@@ -13,7 +19,7 @@ class Book(models.Model):
     )
     foto = models.ImageField(
         verbose_name='Фото обложки',
-        upload_to='books/'
+        upload_to=upload
     )
     description = models.TextField(
         verbose_name='Описание',
