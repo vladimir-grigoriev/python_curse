@@ -14,7 +14,9 @@ urlpatterns = [
     path('login/', include('login.urls', namespace='login')),
     path('cart/', include('orders.urls', namespace='orders')),
     path('profile/', include('user_profile.urls', namespace='user_profile')),
-    path('comments/', include('comments.urls', namespace='comments'))
+    path('comments/', include('comments.urls', namespace='comments')),
+    path('news/', include('news.urls', namespace='news')),
+    path('api-auth/', include('rest_framework.urls'))
 ]
 
 if settings.DEBUG:

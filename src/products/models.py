@@ -1,9 +1,9 @@
 import datetime
 
 from django.db import models
-from directory.models import Author, Genre, Series, Publisher, Binding 
+from directory.models import Author, Genre, Series, Publisher, Binding
 from directory.models import BookFormat, AgeRestriction
-from django.core.validators import MinValueValidator, MinLengthValidator 
+from django.core.validators import MinValueValidator, MinLengthValidator
 from django.core.validators import MaxValueValidator
 
 

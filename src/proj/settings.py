@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'user_profile',
     'manager_admin',
     'comments',
+    'news',
 
     'crispy_forms',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
